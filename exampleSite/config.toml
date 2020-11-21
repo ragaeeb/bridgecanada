@@ -1,4 +1,4 @@
-baseURL = "https://bridgecanada.netlify.com"
+baseURL = "https://bridgecanada.netlify.app"
 disableLanguages = []
 disqusShortname = ""
 paginate = "6"
