@@ -8,7 +8,7 @@ themesDir = "../.."
 title = "Bridge Canada"
 [Languages.en]
 contentDir = "content/english"
-copyright = "Copyright &copy; 2020 Designed by [Themefisher](https://themefisher.com) & Developed by [Gethugothemes](https://gethugothemes.com)"
+copyright = "Copyright &copy; 2020 Bridge Canada. All Rights Reserved."
 home = "Home"
 languageCode = "en-us"
 languageName = "En"
@@ -49,56 +49,9 @@ pre = "#"
 url = "contact"
 weight = 7
 [[Languages.en.menu.main]]
-name = "themefisher"
+name = "Bridge Canada"
 pre = ""
-url = "https://themefisher.com/"
-weight = 8
-[Languages.fr]
-contentDir = "content/french"
-copyright = "Copyright &copy; 2020 Designed by [Themefisher](https://themefisher.com) & Developed by [Gethugothemes](https://gethugothemes.com)"
-home = "Accueil"
-languageCode = "fr-fr"
-languageName = "Fr"
-weight = 2
-[[Languages.fr.menu.main]]
-name = "sur"
-pre = "#"
-url = "about"
-weight = 1
-[[Languages.fr.menu.main]]
-name = "un service"
-pre = "#"
-url = "services"
-weight = 2
-[[Languages.fr.menu.main]]
-name = "portefeuille"
-pre = "#"
-url = "portfolio"
-weight = 3
-[[Languages.fr.menu.main]]
-name = "équipe"
-pre = "#"
-url = "team"
-weight = 4
-[[Languages.fr.menu.main]]
-name = "tarification"
-pre = "#"
-url = "pricing"
-weight = 5
-[[Languages.fr.menu.main]]
-name = "blog"
-pre = "#"
-url = "blog"
-weight = 6
-[[Languages.fr.menu.main]]
-name = "contact"
-pre = "#"
-url = "contact"
-weight = 7
-[[Languages.fr.menu.main]]
-name = "themefisher"
-pre = ""
-url = "https://themefisher.com/"
+url = "https://bridgecanada.ca"
 weight = 8
 [params]
 author = "Themefisher"

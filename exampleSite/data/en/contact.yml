@@ -1,31 +1,27 @@
 ############################## Contact #############################
 contact:
-  enable : true
-  title : Contact Us
-  subtitle : Contact Details
-  content : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam, vero, provident, eum eligendi blanditiis ex explicabo vitae nostrum facilis asperiores dolorem illo officiis ratione vel fugiat dicta laboriosam labore adipisci.
+  enable: true
+  title: Contact Us
+  subtitle: Contact Details
+  content: If you are interested in letting us arrange your visits, please do reach out to us and we will get back to you as soon as possible.
 
   # Contact details
   contact_list:
-    - icon : ti-location-pin # themify icon pack : https://themify.me/themify-icons
-      info : "Khaja Road, Bayzid, Chittagong, Bangladesh"
-      
-    - icon : ti-mobile # themify icon pack : https://themify.me/themify-icons
-      info : "Phone: +880-31-000-000"
-      
-    - icon : ti-printer # themify icon pack : https://themify.me/themify-icons
-      info : "Fax: +880-31-000-000"
-      
-    - icon : ti-email # themify icon pack : https://themify.me/themify-icons
-      info : "Email: hello@meghna.com"
+    - icon: ti-location-pin # themify icon pack : https://themify.me/themify-icons
+      info: "Ottawa, Ontario, Canada"
 
+    - icon: ti-mobile # themify icon pack : https://themify.me/themify-icons
+      info: "Phone: +1 613-809-9189"
+
+    - icon: ti-email # themify icon pack : https://themify.me/themify-icons
+      info: "Email: info@bridgecanada.ca"
 
   # Contact form
   contact_form:
-    enable : true
-    form_action : "#" #contact form works with https://formspree.io
-    name : "Your Name"
-    email : "Your Email"
-    subject : "Subject"
-    message : "Message"
-    submit : "Submit"
+    enable: false
+    form_action: "#" #contact form works with https://formspree.io
+    name: "Your Name"
+    email: "Your Email"
+    subject: "Subject"
+    message: "Message"
+    submit: "Submit"
