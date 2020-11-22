@@ -34,7 +34,7 @@ p {
   font-family: "Quattrocento Sans", sans-serif;
 }
 
-[scroll-behavior=smooth] {
+[scroll-behavior="smooth"] {
   scroll-behavior: smooth;
 }
 
@@ -48,16 +48,16 @@ pre {
 ::-moz-selection {
   /* Code for Firefox */
   color: #fff;
-  background: #57cbcc;
+  background: #b4efab;
 }
 
 ::selection {
   color: #fff;
-  background: #57cbcc;
+  background: #b4efab;
 }
 
 hr {
-  border-top: 1px solid rgba(255, 255, 255, .1);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 figure {
@@ -66,7 +66,7 @@ figure {
 
 a {
   color: #fff;
-  transition: all .3s ease-in 0s;
+  transition: all 0.3s ease-in 0s;
 }
 
 iframe {
@@ -82,7 +82,7 @@ a:hover {
 
 a:focus,
 a:hover {
-  color: #6CB670;
+  color: #6cb670;
 }
 
 .kill-margin-bottom {
@@ -102,7 +102,7 @@ a:hover {
   color: #fff;
   padding: 10px 30px;
   border-radius: 0;
-  transition: all .3s ease-in 0s;
+  transition: all 0.3s ease-in 0s;
 }
 
 .btn:focus {
@@ -115,7 +115,7 @@ a:hover {
 
 .btn-transparent:hover,
 .btn-transparent:focus {
-  background-color: #57cbcc;
+  background-color: #b4efab;
   border: 1px solid transparent;
   color: #fff;
 }
@@ -130,25 +130,25 @@ a:hover {
 
 .border-meghna:before {
   background-color: #fff;
-  content: '';
+  content: "";
   height: 6px;
   left: 50%;
   margin-left: -20px;
   position: absolute;
   top: -4px;
   width: 50px;
-  background-color: #57cbcc;
+  background-color: #b4efab;
 }
 
 .color {
-  color: #6CB670;
+  color: #6cb670;
 }
 
 .sub-title {
   padding: 0 0 50px;
 }
 
-.sub-title>h3 {
+.sub-title > h3 {
   border-left: 3px solid #ddd;
   border-right: 3px solid #ddd;
   display: inline-block;
@@ -199,7 +199,7 @@ figure {
 }
 
 a {
-  transition: all .2s ease-in 0s;
+  transition: all 0.2s ease-in 0s;
 }
 
 iframe {
@@ -215,11 +215,11 @@ a:hover {
 
 a:focus,
 a:hover {
-  color: #57cbcc;
+  color: #b4efab;
 }
 
 .btn-main {
-  background: #57cbcc;
+  background: #b4efab;
   color: #fff;
   display: inline-block;
   font-size: 14px;
@@ -307,7 +307,7 @@ a:hover {
 }
 
 .title h2 span {
-  color: #57cbcc;
+  color: #b4efab;
 }
 
 .title p {
@@ -323,7 +323,7 @@ a:hover {
 }
 
 .section-bg {
-  background: #292F36;
+  background: #292f36;
 }
 
 .overly {
@@ -331,7 +331,7 @@ a:hover {
 }
 
 .overly:before {
-  content: '';
+  content: "";
   background: rgba(0, 0, 0, 0.096);
   position: absolute;
   top: 0;
@@ -352,7 +352,7 @@ a:hover {
 }
 
 .header-bradcrumb a:hover {
-  color: #57cbcc;
+  color: #b4efab;
 }
 
 .slick-slide {
@@ -396,7 +396,7 @@ a:hover {
 .single-page-header:before {
   background: rgba(0, 0, 0, 0.5);
   position: absolute;
-  content: '';
+  content: "";
   top: 0;
   right: 0;
   left: 0;
@@ -412,11 +412,11 @@ a:hover {
   margin-bottom: 0;
 }
 
-.navbar-dark .navbar-nav .active>.nav-link,
+.navbar-dark .navbar-nav .active > .nav-link,
 .navbar-dark .navbar-nav .nav-link.active,
 .navbar-dark .navbar-nav .nav-link.show,
-.navbar-dark .navbar-nav .show>.nav-link {
-  color: #57cbcc;
+.navbar-dark .navbar-nav .show > .nav-link {
+  color: #b4efab;
 }
 
 .navbar-toggler:focus {
@@ -444,7 +444,7 @@ a:hover {
 }
 
 .hero-area:before {
-  content: '';
+  content: "";
   background: rgba(0, 0, 0, 0.63);
   position: absolute;
   top: 0;
@@ -460,7 +460,7 @@ a:hover {
 
 .hero-area .block .video-button {
   background: #fff;
-  color: #57cbcc;
+  color: #b4efab;
   display: inline-block;
   height: 60px;
   width: 60px;
@@ -550,12 +550,12 @@ a:hover {
   background: #242930;
   padding: 30px;
   border-bottom: 2px solid transparent;
-  transition: .5s all;
+  transition: 0.5s all;
   margin-bottom: 20px;
 }
 
 .about .block:hover {
-  border-bottom: 2px solid #57cbcc;
+  border-bottom: 2px solid #b4efab;
 }
 
 .about .block:hover .icon-box {
@@ -627,7 +627,7 @@ a:hover {
 
 .about-2 .content-block .media i {
   font-size: 30px;
-  color: #57cbcc;
+  color: #b4efab;
 }
 
 .about-2 .content-block .media h4 {
@@ -707,12 +707,12 @@ a:hover {
 
 .form-meghna input:hover,
 .form-meghna textarea:hover {
-  border-color: #57cbcc;
+  border-color: #b4efab;
 }
 
 #contact-submit {
   border: 1px solid rgba(236, 239, 241, 0.07);
-  background: #57cbcc;
+  background: #b4efab;
   padding: 12px 0;
   width: 100%;
   margin: 0;
@@ -747,10 +747,10 @@ a:hover {
 .error {
   display: none;
   padding: 10px;
-  color: #D8000C;
+  color: #d8000c;
   border-radius: 4px;
   font-size: 13px;
-  background-color: #FFBABA;
+  background-color: #ffbaba;
 }
 
 .success {
@@ -773,7 +773,7 @@ a:hover {
 .counters-item {
   padding: 25px 0;
   margin-bottom: 10px;
-  background: #292F36;
+  background: #292f36;
 }
 
 .counters-item i {
@@ -804,12 +804,12 @@ a:hover {
 }
 
 .price-title {
-  background-color: #292F36;
+  background-color: #292f36;
   padding: 30px 0 20px;
 }
 
 .price-title h3 {
-  color: #57cbcc;
+  color: #b4efab;
   margin: 0 0 10px;
   text-transform: uppercase;
 }
@@ -820,7 +820,7 @@ a:hover {
 }
 
 .price-title .value {
-  color: #57cbcc;
+  color: #b4efab;
   font-size: 30px;
 }
 
@@ -841,7 +841,7 @@ a:hover {
 }
 
 .pricing li:nth-child(2n) {
-  background-color: #292F36;
+  background-color: #292f36;
 }
 
 .pricing li .btn {
@@ -866,11 +866,11 @@ a:hover {
   padding: 6px 20px;
   font-weight: 700;
   color: #737f8a;
-  transition: .3s all;
+  transition: 0.3s all;
 }
 
 .portfolio-filter .btn.active {
-  border-color: #57cbcc;
+  border-color: #b4efab;
 }
 
 .portfolio-block {
@@ -886,7 +886,7 @@ a:hover {
   bottom: 20px;
   left: 20px;
   position: absolute;
-  content: '';
+  content: "";
 }
 
 .portfolio-block img {
@@ -929,7 +929,7 @@ a:hover {
 }
 
 .portfolio-block .caption .search-icon {
-  background: #57cbcc;
+  background: #b4efab;
   width: 50px;
   height: 50px;
   color: #fff;
@@ -950,7 +950,8 @@ a:hover {
   border-left: 1px solid rgba(236, 239, 241, 0.07);
   border-top: 1px solid rgba(236, 239, 241, 0.07);
   margin-bottom: 40px;
-  box-shadow: 2px 2px 5px rgba(44, 44, 44, 0.3), 13px 13px 0 rgba(255, 255, 255, 0.7);
+  box-shadow: 2px 2px 5px rgba(44, 44, 44, 0.3),
+    13px 13px 0 rgba(255, 255, 255, 0.7);
 }
 
 .service-block .service-icon {
@@ -975,13 +976,13 @@ a:hover {
 
 .service-2 .service-item:hover i {
   background: #fff;
-  color: #57cbcc;
+  color: #b4efab;
 }
 
 .service-2 .service-item i {
   font-size: 30px;
   display: inline-block;
-  background: #57cbcc none repeat scroll 0 0;
+  background: #b4efab none repeat scroll 0 0;
   border-radius: 30px;
   box-shadow: 0 5px 6px 0 rgba(0, 0, 0, 0.1);
   color: #fff;
@@ -1014,14 +1015,14 @@ a:hover {
 }
 
 .skill-bar .progress .progress-bar {
-  background: #57cbcc;
+  background: #b4efab;
 }
 
 /*=================================================================
   Our Team
 ==================================================================*/
 .team-member {
-  background-color: #292F36;
+  background-color: #292f36;
   margin-bottom: 10px;
 }
 
@@ -1069,7 +1070,7 @@ a:hover {
   top: 0;
   opacity: 0;
   filter: alpha(opacity=0);
-  transition: all .5s ease-out 0s;
+  transition: all 0.5s ease-out 0s;
   -webkit-transform: rotateY(180deg) scale(0.5, 0.5);
   transform: rotateY(180deg) scale(0.5, 0.5);
 }
@@ -1093,7 +1094,7 @@ a:hover {
 
 .member-photo .mask ul li a:hover {
   background-color: #fff;
-  color: #57cbcc;
+  color: #b4efab;
   border: 1px solid transparent;
 }
 
@@ -1144,7 +1145,7 @@ a:hover {
 }
 
 .client-meta h3 {
-  margin: 15px 0 5px .0;
+  margin: 15px 0 5px 0;
 }
 
 .client-meta span {
@@ -1174,7 +1175,7 @@ a:hover {
 
 .owl-controls .owl-page.active span,
 .owl-controls .owl-page:hover span {
-  background-color: #57cbcc;
+  background-color: #b4efab;
   border: 2px solid transparent;
 }
 
@@ -1215,12 +1216,12 @@ a:hover {
   Latest Posts
 ==================================================================*/
 .note {
-  background-color: #292F36;
+  background-color: #292f36;
   border: 1px solid #4e595f;
 }
 
 .post-block {
-  background-color: #292F36;
+  background-color: #292f36;
   margin-bottom: 10px;
 }
 
@@ -1268,10 +1269,10 @@ a:hover {
 }
 
 .post-meta a {
-  color: #57cbcc;
+  color: #b4efab;
 }
 
-.post-meta>span {
+.post-meta > span {
   color: #666;
   border-right: 1px solid #dedede;
   display: inline-block;
@@ -1280,11 +1281,11 @@ a:hover {
   padding-right: 10px;
 }
 
-.post-meta>span:last-child {
+.post-meta > span:last-child {
   border-right: 0;
 }
 
-.post-meta>span i {
+.post-meta > span i {
   margin-right: 5px;
 }
 
@@ -1329,7 +1330,7 @@ a:hover {
 }
 
 .next-prev a:hover {
-  color: #57cbcc;
+  color: #b4efab;
 }
 
 .next-prev .prev-post i {
@@ -1352,7 +1353,7 @@ a:hover {
 }
 
 .social-profile ul li a i:hover {
-  color: #57cbcc;
+  color: #b4efab;
 }
 
 .comments-section {
@@ -1367,7 +1368,7 @@ a:hover {
   margin-right: 20px;
 }
 
-.post-author>img {
+.post-author > img {
   border: 1px solid #dedede;
   max-width: 120px;
   padding: 5px;
@@ -1400,7 +1401,7 @@ a:hover {
 }
 
 .comment-wrap .media .media-heading a {
-  color: #57cbcc;
+  color: #b4efab;
   font-size: 13px;
 }
 
@@ -1427,7 +1428,7 @@ a:hover {
 .comment-reply-form input:focus,
 .comment-reply-form textarea:focus {
   box-shadow: none;
-  border: 1px solid #57cbcc;
+  border: 1px solid #b4efab;
 }
 
 .comment-reply-form textarea,
@@ -1457,7 +1458,6 @@ a:hover {
 
 .post-comment {
   background-color: #292f36;
-  ;
   padding: 20px;
   margin-top: 20px;
   margin-bottom: 20px;
@@ -1485,7 +1485,7 @@ a:hover {
   font: inherit;
   padding: 10px;
   margin-top: 20px;
-  outline-color: #F76C5E;
+  outline-color: #f76c5e;
   width: 100%;
 }
 
@@ -1529,7 +1529,7 @@ input#e-mail,
 }
 
 .social-icon ul li a:hover {
-  background: #57cbcc;
+  background: #b4efab;
 }
 
 .social-icon ul li a:hover i {
@@ -1572,8 +1572,8 @@ input#e-mail,
 }
 
 #scrollUp:hover {
-  background-color: #57cbcc;
-  border: 1px solid #57cbcc;
+  background-color: #b4efab;
+  border: 1px solid #b4efab;
 }
 
 /*=================================================================
@@ -1611,9 +1611,9 @@ input#e-mail,
 }
 
 .blog-icon {
-  border: 1px solid #6CB670;
+  border: 1px solid #6cb670;
   border-radius: 50%;
-  color: #6CB670;
+  color: #6cb670;
   display: inline-block;
   padding: 16px 20px;
 }
@@ -1642,7 +1642,7 @@ input#e-mail,
   padding: 5px 17px;
   position: absolute;
   top: 45%;
-  transition: all .5s ease-in 0s;
+  transition: all 0.5s ease-in 0s;
 }
 
 #gallery-post .owl-prev,
@@ -1682,7 +1682,7 @@ input#e-mail,
   padding: 0 20px 10px;
 }
 
-.post-meta>span {
+.post-meta > span {
   border-right: 1px solid #4e595f;
   display: inline-block;
   font-size: 12px;
@@ -1690,16 +1690,16 @@ input#e-mail,
   padding-right: 10px;
 }
 
-.post-meta>span:last-child {
+.post-meta > span:last-child {
   border-right: 0;
 }
 
-.post-meta>span>i {
+.post-meta > span > i {
   margin-right: 5px;
 }
 
 .post-meta a:hover {
-  color: #6CB670;
+  color: #6cb670;
 }
 
 .post-excerpt .more {
@@ -1713,7 +1713,7 @@ input#e-mail,
 }
 
 .post-excerpt .more a:hover {
-  background-color: #6CB670;
+  background-color: #6cb670;
   color: #fff;
 }
 
@@ -1721,7 +1721,7 @@ aside.widget {
   margin-bottom: 25px;
 }
 
-.widget-title>h3 {
+.widget-title > h3 {
   color: #fff;
   margin-bottom: 15px;
   margin-top: 0;
@@ -1735,7 +1735,7 @@ aside.widget {
 #search-submit {
   background: none;
   border: 0;
-  color: #C8C8CA;
+  color: #c8c8ca;
   display: block;
   font-size: 16px;
   height: 32px;
@@ -1753,7 +1753,7 @@ aside.widget {
 }
 
 .tab-post-nav {
-  background-color: #4A535A;
+  background-color: #4a535a;
 }
 
 .tab-post-nav li {
@@ -1762,15 +1762,15 @@ aside.widget {
 
 .tab-post-nav li.active a {
   border-top: 3px solid #6cb670;
-  background-color: #2F383D;
-  color: #6CB670;
+  background-color: #2f383d;
+  color: #6cb670;
 }
 
 .tab-pane.active .clearfix:first-child {
   margin-bottom: 25px;
 }
 
-.tab-excerpt>span {
+.tab-excerpt > span {
   display: block;
   font-size: 12px;
   margin-bottom: 10px;
@@ -1794,15 +1794,15 @@ aside.widget {
 
 .categories li {
   margin-bottom: 10px;
-  transition: all .5s ease-in 0s;
+  transition: all 0.5s ease-in 0s;
 }
 
-.categories>li:hover a {
+.categories > li:hover a {
   padding-left: 10px;
-  color: #6CB670;
+  color: #6cb670;
 }
 
-.categories>li:last-child {
+.categories > li:last-child {
   border-bottom: 0;
 }
 
@@ -1811,7 +1811,7 @@ aside.widget {
 }
 
 .widget-content .tag {
-  background-color: #2F383D;
+  background-color: #2f383d;
   color: #fff;
   display: inline-block;
   margin-bottom: 10px;
@@ -1820,7 +1820,7 @@ aside.widget {
 }
 
 .widget-content .tag:hover {
-  background-color: #6CB670;
+  background-color: #6cb670;
   color: #fff;
 }
 
@@ -1843,7 +1843,7 @@ aside.widget {
 }
 
 .post-pagination ul li.disabled a:hover {
-  background-color: #2E373C;
+  background-color: #2e373c;
   color: #9aa8b3;
 }
 
@@ -1856,7 +1856,7 @@ aside.widget {
 
 .post-pagination ul li a:hover,
 .post-pagination ul li.active a {
-  background-color: #6CB670;
+  background-color: #6cb670;
   color: #fff;
 }
 
@@ -1885,7 +1885,7 @@ blockquote {
 }
 
 .next-prev a:hover {
-  color: #6CB670;
+  color: #6cb670;
 }
 
 .prev-post i {
@@ -1904,16 +1904,16 @@ blockquote {
   margin-right: 20px;
 }
 
-.post-author>img {
+.post-author > img {
   border: 1px solid #4e595f;
   max-width: 120px;
   padding: 5px;
   width: 100%;
 }
 
-.comment-reply-form>h3,
-.author-about>h4,
-.comments>h4 {
+.comment-reply-form > h3,
+.author-about > h4,
+.comments > h4 {
   border-bottom: 1px solid #4e595f;
   margin-bottom: 15px;
   margin-top: 0;
@@ -1957,7 +1957,7 @@ blockquote {
 
 .author-comment cite a:hover,
 .replay:hover {
-  color: #6CB670;
+  color: #6cb670;
   text-decoration: underline;
 }
 
@@ -1983,7 +1983,7 @@ blockquote {
 }
 
 #comment-form .form-control:hover {
-  border-color: #6CB670;
+  border-color: #6cb670;
 }
 
 .form-group:last-child,
@@ -1999,7 +1999,7 @@ blockquote {
 }
 
 .form-control-meghna .form-control:focus {
-  border-color: #57cbcc;
+  border-color: #b4efab;
   box-shadow: 0 0 0 0.2rem rgba(0, 174, 255, 0.432);
 }
 
@@ -2015,13 +2015,13 @@ figcaption {
 /*! Social sharing buttons from Sharingbuttons.io */
 .resp-sharing-button__link,
 .resp-sharing-button__icon {
-  display: inline-block
+  display: inline-block;
 }
 
 .resp-sharing-button__link {
   text-decoration: none;
   color: #fff;
-  margin: 0.5em
+  margin: 0.5em;
 }
 
 .resp-sharing-button {
@@ -2035,122 +2035,122 @@ figcaption {
   width: 1em;
   height: 1em;
   margin-right: 0.4em;
-  vertical-align: top
+  vertical-align: top;
 }
 
 .resp-sharing-button--small svg {
   margin: 0;
-  vertical-align: middle
+  vertical-align: middle;
 }
 
 /* Non solid icons get a stroke */
 .resp-sharing-button__icon {
   stroke: #fff;
-  fill: none
+  fill: none;
 }
 
 /* Solid icons get a fill */
 .resp-sharing-button__icon--solid,
 .resp-sharing-button__icon--solidcircle {
   fill: #fff;
-  stroke: none
+  stroke: none;
 }
 
 .resp-sharing-button--twitter {
-  background-color: #55acee
+  background-color: #55acee;
 }
 
 .resp-sharing-button--twitter:hover {
-  background-color: #2795e9
+  background-color: #2795e9;
 }
 
 .resp-sharing-button--pinterest {
-  background-color: #bd081c
+  background-color: #bd081c;
 }
 
 .resp-sharing-button--pinterest:hover {
-  background-color: #8c0615
+  background-color: #8c0615;
 }
 
 .resp-sharing-button--facebook {
-  background-color: #3b5998
+  background-color: #3b5998;
 }
 
 .resp-sharing-button--facebook:hover {
-  background-color: #2d4373
+  background-color: #2d4373;
 }
 
 .resp-sharing-button--tumblr {
-  background-color: #35465C
+  background-color: #35465c;
 }
 
 .resp-sharing-button--tumblr:hover {
-  background-color: #222d3c
+  background-color: #222d3c;
 }
 
 .resp-sharing-button--reddit {
-  background-color: #5f99cf
+  background-color: #5f99cf;
 }
 
 .resp-sharing-button--reddit:hover {
-  background-color: #3a80c1
+  background-color: #3a80c1;
 }
 
 .resp-sharing-button--google {
-  background-color: #dd4b39
+  background-color: #dd4b39;
 }
 
 .resp-sharing-button--google:hover {
-  background-color: #c23321
+  background-color: #c23321;
 }
 
 .resp-sharing-button--linkedin {
-  background-color: #0077b5
+  background-color: #0077b5;
 }
 
 .resp-sharing-button--linkedin:hover {
-  background-color: #046293
+  background-color: #046293;
 }
 
 .resp-sharing-button--email {
-  background-color: #777
+  background-color: #777;
 }
 
 .resp-sharing-button--email:hover {
-  background-color: #5e5e5e
+  background-color: #5e5e5e;
 }
 
 .resp-sharing-button--xing {
-  background-color: #1a7576
+  background-color: #1a7576;
 }
 
 .resp-sharing-button--xing:hover {
-  background-color: #114c4c
+  background-color: #114c4c;
 }
 
 .resp-sharing-button--whatsapp {
-  background-color: #25D366
+  background-color: #25d366;
 }
 
 .resp-sharing-button--whatsapp:hover {
-  background-color: #1da851
+  background-color: #1da851;
 }
 
 .resp-sharing-button--hackernews {
-  background-color: #FF6600
+  background-color: #ff6600;
 }
 
 .resp-sharing-button--hackernews:hover,
 .resp-sharing-button--hackernews:focus {
-  background-color: #FB6200
+  background-color: #fb6200;
 }
 
 .resp-sharing-button--vk {
-  background-color: #507299
+  background-color: #507299;
 }
 
 .resp-sharing-button--vk:hover {
-  background-color: #43648c
+  background-color: #43648c;
 }
 
 .resp-sharing-button--facebook {
@@ -2186,7 +2186,6 @@ figcaption {
   border-color: #c23321;
 }
 
-
 .resp-sharing-button--email {
   background-color: #777777;
   border-color: #777777;
@@ -2210,24 +2209,23 @@ figcaption {
 }
 
 .resp-sharing-button--whatsapp {
-  background-color: #25D366;
-  border-color: #25D366;
+  background-color: #25d366;
+  border-color: #25d366;
 }
 
 .resp-sharing-button--whatsapp:hover,
 .resp-sharing-button--whatsapp:active {
-  background-color: #1DA851;
-  border-color: #1DA851;
+  background-color: #1da851;
+  border-color: #1da851;
 }
 
 .resp-sharing-button--telegram {
-  background-color: #54A9EB;
+  background-color: #54a9eb;
 }
 
 .resp-sharing-button--telegram:hover {
-  background-color: #4B97D1;
+  background-color: #4b97d1;
 }
-
 
 .pagination {
   text-align: center;
@@ -2235,7 +2233,7 @@ figcaption {
   margin-top: 20px;
 }
 
-.pagination>li {
+.pagination > li {
   display: inline-block;
 }
 
@@ -2253,9 +2251,9 @@ figcaption {
 }
 
 .pagination .page-item .page-link:hover {
-  background: #57cbcc;
-  border-color: #57cbcc;
-  color: #fff
+  background: #b4efab;
+  border-color: #b4efab;
+  color: #fff;
 }
 
 .pagination .page-item:first-child .page-link,
@@ -2264,9 +2262,9 @@ figcaption {
 }
 
 .pagination .page-item.active .page-link {
-  background: #57cbcc;
+  background: #b4efab;
   color: #fff;
-  border-color: #57cbcc;
+  border-color: #b4efab;
 }
 
 #select-language {
@@ -2290,7 +2288,7 @@ figcaption {
   text-align: center;
   padding: 1rem 2rem;
   background: rgb(71, 71, 71);
-  transition: all .75s cubic-bezier(.19, 1, .22, 1);
+  transition: all 0.75s cubic-bezier(0.19, 1, 0.22, 1);
   color: #fdfdfd;
 }
 
