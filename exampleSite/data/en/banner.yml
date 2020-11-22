@@ -8,5 +8,5 @@ banner:
   content: "Bridge Canada has been helping connect entities to their international interests for years!"
   button:
     enable: true
-    label: "Discover More"
+    label: "Connect With Us"
     link: "#services"
