@@ -9,16 +9,6 @@ $(window).on('load', function () {
 jQuery(function ($) {
 	"use strict";
 
-
-	/* ========================================================================= */
-	/*	Auto close Navbar when click on link
-	/* ========================================================================= */
-
-	$('.navbar-collapse a').click(function () {
-		$(".navbar-collapse").collapse('hide');
-	});
-
-
 	/* ========================================================================= */
 	/*	lazy load initialize
 	/* ========================================================================= */
@@ -75,10 +65,6 @@ jQuery(function ($) {
 		autoplay: true,
 		autoplaySpeed: 4000
 	});
-
-	/* ========================================================================= */
-	/*	animation scroll js
-	/* ========================================================================= */
 
 	var html_body = $('html, body');
 	$('nav a, .page-scroll').on('click', function () { //use page-scroll class in any HTML tag for scrolling

@@ -1,26 +1,22 @@
 ################################# Skill ##################################
 skill:
-  enable : true
-  title : Our Skills
-  subtitle : We’ve skilled in wide range of web and Other digital market tools.
-  content : Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis magni explicabo cum aperiam recusandae sunt accusamus totam. Quidem quos fugiat sapiente numquam accusamus quas hic, itaque in libero reiciendis tempora!
-  image : images/about/company-growth.webp
-  skill_item :
+  enable: true
+  title: Our Experience
+  subtitle: We have been doing this for a while!
+  content: These are just some of the Government Delegations we have hosted and arranged our services for.
+  image: images/about/company-growth.webp
+  skill_item:
     # skill item loop
-    - name :  Business Development
-      percent : 90%
-      
+    - name: Government of Bangladesh - Ministry of Industries, April 2016
+      percent: 90%
+
     # skill item loop
-    - name :  Analysis
-      percent : 70%
-      
+    - name: Government of Bangladesh - Ministry of Water and Resources, June 2016
+      percent: 70%
+
     # skill item loop
-    - name :  Design
-      percent : 80%
-      
-    - name :  IOS Development
-      percent : 95%
-      
-    # skill item loop
-    - name :  Android Development
-      percent : 75%
+    - name: Government of Bangladesh - Ministry of Education, November 2016
+      percent: 80%
+
+    - name: Government of Bangladesh - Ministry of Housing and Public Works, July 2017
+      percent: 95%

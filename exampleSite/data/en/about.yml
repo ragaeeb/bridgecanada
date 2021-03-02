@@ -1,16 +1,16 @@
 ############################# About ###################################
 about:
-  enable : true
-  title : About Us
-  about_item :
-  - icon : ti-ruler-pencil # themify icon pack : https://themify.me/themify-icons
-    title : We're Creative
-    content : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit, nihil, libero, perspiciatis eos provident laborum eum dignissimos.
+  enable: true
+  title: About Us
+  about_item:
+    - icon: ti-ruler-pencil # themify icon pack : https://themify.me/themify-icons
+      title: We're Resourceful
+      content: We have contacts with some of the top companies in Canada and are able to arrange meetings with nearly any entity.
 
-  - icon : ti-cup # themify icon pack : https://themify.me/themify-icons
-    title : We're Professional
-    content : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit, nihil, libero, perspiciatis eos provident laborum eum dignissimos.
+    - icon: ti-cup # themify icon pack : https://themify.me/themify-icons
+      title: We're Connected
+      content: We have connections with some of the top hotels in the country to make your stay in Canada a comfortable and memorable one.
 
-  - icon : ti-thought # themify icon pack : https://themify.me/themify-icons
-    title : We're Genius
-    content : Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit, nihil, libero, perspiciatis eos provident laborum eum dignissimos.
+    - icon: ti-thought # themify icon pack : https://themify.me/themify-icons
+      title: We're Experienced
+      content: We have been in this business for a long time and are able to achieve your business goals without hiccups.

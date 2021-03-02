@@ -3,12 +3,12 @@ disableLanguages = []
 disqusShortname = ""
 paginate = "6"
 summaryLength = "15"
-theme = "meghna-hugo"
+theme = "bridgecanada"
 themesDir = "../.."
 title = "Bridge Canada"
 [Languages.en]
 contentDir = "content/english"
-copyright = "Copyright &copy; 2020 Bridge Canada. All Rights Reserved."
+copyright = "Copyright &copy; 2021 Bridge Canada. All Rights Reserved."
 home = "Home"
 languageCode = "en-us"
 languageName = "En"
@@ -33,14 +33,9 @@ name = "contact"
 pre = "#"
 url = "contact"
 weight = 7
-[[Languages.en.menu.main]]
-name = "Bridge Canada"
-pre = ""
-url = "https://bridgecanada.ca"
-weight = 8
 [params]
 author = "Themefisher"
-description = "Responsive Multipurpose Parallax Hugo Template"
+description = "Connecting Continents"
 google_analytics_id = ""
 logo = "images/logo.png"
 post_share = true

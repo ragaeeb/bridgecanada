@@ -1,11 +1,11 @@
 ############################# call to action ##############################
 cta:
-  enable : true
-  bg_image : "images/backgrounds/bg-white-wall.jpg"
-  bg_image_webp : "images/backgrounds/bg-white-wall.webp"
-  title : "Great Design & Incredible Features"
-  content : "Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis tenetur odio impedit incidunt? Omnis accusantium ea reiciendis, fugit commodi nostrum."
+  enable: true
+  bg_image: "images/backgrounds/bg-white-wall.jpg"
+  bg_image_webp: "images/backgrounds/bg-white-wall.webp"
+  title: "Our Clients Are Our Primary Focus"
+  content: "From the moment you land we consider you our most valuable guests and thus our primary goal is to ensure your business trip goes beyond what your expectations are."
   button:
-    enable : true
-    label : "Start a project with us"
-    link : "#contact"
+    enable: true
+    label: "Start a project with us"
+    link: "#contact"
