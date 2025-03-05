@@ -1,7 +1,7 @@
 import type { NextConfig } from 'next';
 
 const nextConfig: NextConfig = {
-    basePath: '/bridgecanada', // we need this since GitHub pages will put all assets in a folder: ragaeeb.github.io/bridgecanada/*
+    basePath: process.env.NODE_ENV === 'production' ? '/bridgecanada' : '',
     images: {
         unoptimized: true, // Disable server-based image optimization. Next.js does not support dynamic features with static exports
     },
