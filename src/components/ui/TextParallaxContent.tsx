@@ -4,7 +4,15 @@ import React, { useRef } from 'react';
 
 const IMG_PADDING = 12;
 
-export const TextParallaxContent = ({ heading, imgUrl, subheading }) => {
+export const TextParallaxContent = ({
+    heading,
+    imgUrl,
+    subheading,
+}: {
+    heading: string;
+    imgUrl: string;
+    subheading: string;
+}) => {
     return (
         <div
             style={{
@@ -20,7 +28,7 @@ export const TextParallaxContent = ({ heading, imgUrl, subheading }) => {
     );
 };
 
-const StickyImage = ({ imgUrl }) => {
+const StickyImage = ({ imgUrl }: { imgUrl: string }) => {
     const targetRef = useRef(null);
     const { scrollYProgress } = useScroll({
         offset: ['end end', 'end start'],
@@ -53,7 +61,7 @@ const StickyImage = ({ imgUrl }) => {
     );
 };
 
-const OverlayCopy = ({ heading, subheading }) => {
+const OverlayCopy = ({ heading, subheading }: { heading: string; subheading: string }) => {
     const targetRef = useRef(null);
     const { scrollYProgress } = useScroll({
         offset: ['start end', 'end start'],

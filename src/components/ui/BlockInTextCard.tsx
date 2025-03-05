@@ -50,7 +50,7 @@ const Typewrite = ({ examples }: { examples: string[] }) => {
         }, SWAP_DELAY_IN_MS);
 
         return () => clearInterval(intervalId);
-    }, []);
+    }, [examples.length]);
 
     return (
         <p className="mb-2.5 text-sm font-light uppercase">

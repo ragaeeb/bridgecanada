@@ -1,6 +1,8 @@
+import { type Icon } from '@tabler/icons-react';
+
 interface CardType {
     href: string;
-    Icon: any;
+    Icon: Icon;
     subtitle: string;
     title: string;
 }
