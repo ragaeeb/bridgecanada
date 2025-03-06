@@ -1,4 +1,5 @@
 [![wakatime](https://wakatime.com/badge/user/a0b906ce-b8e7-4463-8bce-383238df6d4b/project/8609daf8-78e6-4e8e-b94c-de3c4fef4169.svg)](https://wakatime.com/badge/user/a0b906ce-b8e7-4463-8bce-383238df6d4b/project/8609daf8-78e6-4e8e-b94c-de3c4fef4169)
+[![Netlify Status](https://api.netlify.com/api/v1/badges/6d635e09-5331-42ad-8d3c-01c2b2cf5a38/deploy-status)](https://app.netlify.com/sites/bridgecanada/deploys)
 
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
