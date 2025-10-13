@@ -2,9 +2,9 @@ name: Build and Version
 
 on:
     push:
-        branches: [main]
+        branches: [master]
     pull_request:
-        branches: [main]
+        branches: [master]
 
 # Add permissions at the workflow level
 permissions:
@@ -16,7 +16,7 @@ permissions:
 jobs:
     build-and-version:
         runs-on: ubuntu-latest
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push' && !contains(github.event.head_commit.message, '[skip ci]') && !startsWith(github.event.head_commit.message, 'chore(release)')
+        if: github.ref == 'refs/heads/master' && github.event_name == 'push' && !contains(github.event.head_commit.message, '[skip ci]') && !startsWith(github.event.head_commit.message, 'chore(release)')
 
         # Add permissions at the job level as well
         permissions:
@@ -99,8 +99,3 @@ jobs:
 
             - name: Run tests
               run: bun test --coverage --coverage-reporter=lcov
-
-            - name: Upload results to Codecov
-              uses: codecov/codecov-action@v5
-              with:
-                  token: ${{ secrets.CODECOV_TOKEN }}
