@@ -6,6 +6,8 @@ const nextConfig: NextConfig = {
     },
     output: 'export', // enables static exports which is needed for GitHub Pages
     trailingSlash: true,
+    reactStrictMode: true,
+    typedRoutes: true,
 };
 
 export default nextConfig;
