@@ -1,17 +1,21 @@
-import { motion } from 'framer-motion';
-import React, { ReactNode, useEffect, useState } from 'react';
+'use client';
 
-export const BlockInTextCard = ({
-    examples,
-    onTagClick,
-    tag,
-    text,
-}: {
+import { motion } from 'framer-motion';
+import { ReactNode, useEffect, useState } from 'react';
+
+interface BlockInTextCardProps {
     examples: string[];
-    onTagClick: () => void;
     tag: string;
     text: ReactNode;
-}) => {
+    ctaHref?: string;
+    ctaLabel?: string;
+    onTagClick?: () => void;
+}
+
+export const BlockInTextCard = ({ examples, tag, text, ctaHref, ctaLabel = 'Contact Us', onTagClick }: BlockInTextCardProps) => {
+    const ctaClassName =
+        'inline-flex w-fit items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-emerald-950 shadow-lg ring-1 ring-inset ring-white/60 transition hover:bg-emerald-100 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white';
+
     return (
         <div className="w-full max-w-7xl space-y-6">
             <div>
@@ -23,12 +27,15 @@ export const BlockInTextCard = ({
                 <Typewrite examples={examples} />
                 <hr className="border-neutral-300" />
             </div>
-            <button
-                className="w-full rounded-full border border-neutral-950 py-2 text-sm font-medium transition-colors hover:bg-neutral-950 hover:text-neutral-100"
-                onClick={onTagClick}
-            >
-                Contact Us
-            </button>
+            {ctaHref ? (
+                <a className={ctaClassName} href={ctaHref} rel="noopener noreferrer">
+                    {ctaLabel}
+                </a>
+            ) : (
+                <button className={ctaClassName} onClick={onTagClick} type="button">
+                    {ctaLabel}
+                </button>
+            )}
         </div>
     );
 };

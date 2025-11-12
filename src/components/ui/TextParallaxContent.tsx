@@ -4,15 +4,15 @@ import React, { useRef } from 'react';
 
 const IMG_PADDING = 12;
 
-export const TextParallaxContent = ({
-    heading,
-    imgUrl,
-    subheading,
-}: {
-    heading: string;
+interface TextParallaxContentProps {
+    heading?: string;
+    subheading?: string;
     imgUrl: string;
-    subheading: string;
-}) => {
+    content?: React.ReactNode;
+    contentClassName?: string;
+}
+
+export const TextParallaxContent = ({ heading, imgUrl, subheading, content, contentClassName }: TextParallaxContentProps) => {
     return (
         <div
             style={{
@@ -22,7 +22,12 @@ export const TextParallaxContent = ({
         >
             <div className="relative h-[150vh]">
                 <StickyImage imgUrl={imgUrl} />
-                <OverlayCopy heading={heading} subheading={subheading} />
+                <OverlayCopy
+                    content={content}
+                    contentClassName={contentClassName}
+                    heading={heading}
+                    subheading={subheading}
+                />
             </div>
         </div>
     );
@@ -61,7 +66,17 @@ const StickyImage = ({ imgUrl }: { imgUrl: string }) => {
     );
 };
 
-const OverlayCopy = ({ heading, subheading }: { heading: string; subheading: string }) => {
+const OverlayCopy = ({
+    heading,
+    subheading,
+    content,
+    contentClassName,
+}: {
+    heading?: string;
+    subheading?: string;
+    content?: React.ReactNode;
+    contentClassName?: string;
+}) => {
     const targetRef = useRef(null);
     const { scrollYProgress } = useScroll({
         offset: ['start end', 'end start'],
@@ -71,17 +86,29 @@ const OverlayCopy = ({ heading, subheading }: { heading: string; subheading: str
     const y = useTransform(scrollYProgress, [0, 1], [250, -250]);
     const opacity = useTransform(scrollYProgress, [0.25, 0.5, 0.75], [0, 1, 0]);
 
+    const wrapperClassName = `absolute left-0 top-0 flex h-screen w-full flex-col items-center justify-center text-white ${
+        contentClassName ?? ''
+    }`;
+
     return (
         <motion.div
-            className="absolute left-0 top-0 flex h-screen w-full flex-col items-center justify-center text-white"
+            className={wrapperClassName}
             ref={targetRef}
             style={{
                 opacity,
                 y,
             }}
         >
-            <p className="text-center text-4xl font-bold md:text-7xl">{heading}</p>
-            <p className="mb-2 p-4 text-center text-xl md:mb-4 md:text-3xl">{subheading}</p>
+            {content ? (
+                content
+            ) : (
+                <>
+                    {heading ? <p className="text-center text-4xl font-bold md:text-7xl">{heading}</p> : null}
+                    {subheading ? (
+                        <p className="mb-2 p-4 text-center text-xl md:mb-4 md:text-3xl">{subheading}</p>
+                    ) : null}
+                </>
+            )}
         </motion.div>
     );
 };

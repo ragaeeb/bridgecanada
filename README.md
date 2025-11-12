@@ -1,7 +1,7 @@
 # Bridge Canada
 
 [![wakatime](https://wakatime.com/badge/user/a0b906ce-b8e7-4463-8bce-383238df6d4b/project/8609daf8-78e6-4e8e-b94c-de3c4fef4169.svg)](https://wakatime.com/badge/user/a0b906ce-b8e7-4463-8bce-383238df6d4b/project/8609daf8-78e6-4e8e-b94c-de3c4fef4169)
-[![Vercel Deploy](https://deploy-badge.vercel.app/vercel/bridgecanada)](https://bridgecanada.vercel.app)
+[![Vercel Deploy](https://deploy-badge.vercel.app/vercel/bridgecanada)](https://bridgecanada.ca)
 
 **Connecting Continents** - A professional business coordination service helping international delegations connect with Canadian entities.
 
@@ -22,13 +22,13 @@ We have successfully hosted government delegations from Bangladesh (Ministry of 
 
 Built with modern web technologies:
 
-- **Framework**: [Next.js 15](https://nextjs.org) with App Router
+- **Framework**: [Next.js 16](https://nextjs.org) with App Router and Turbopack
 - **Runtime**: Bun >=1.3.0
 - **UI Components**: React 19 with Radix UI primitives
-- **Styling**: Tailwind CSS v4 with custom animations
+- **Styling**: Tailwind CSS v4.1 with custom animations
 - **Animation**: Framer Motion / Motion
 - **Icons**: Tabler Icons, Lucide React
-- **Code Quality**: Biome (linting & formatting)
+- **Code Quality**: Biome 2 for linting & formatting
 - **Deployment**: Static export optimized for Vercel/GitHub Pages
 
 ## Getting Started
@@ -51,6 +51,11 @@ bun start     # Start production server
 bun lint      # Run Biome linter
 bun format    # Format code with Biome
 ```
+
+> **Note**
+>
+> Next.js 16 enables Google Fonts by default. The repository configures Turbopack to reuse system TLS certificates during builds,
+> which keeps static exports working reliably in headless CI environments.
 
 ## Project Structure
 
