@@ -1,3 +1,10 @@
+## [1.0.1](https://github.com/ragaeeb/bridgecanada/compare/v1.0.0...v1.0.1) (2025-12-27)
+
+
+### Bug Fixes
+
+* **security:** Update dependencies ([342e974](https://github.com/ragaeeb/bridgecanada/commit/342e97486434cdcc80796ed781af3a7dce53fed8))
+
 # 1.0.0 (2025-10-13)
 
 
