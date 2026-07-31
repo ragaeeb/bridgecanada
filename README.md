@@ -3,33 +3,40 @@
 [![wakatime](https://wakatime.com/badge/user/a0b906ce-b8e7-4463-8bce-383238df6d4b/project/8609daf8-78e6-4e8e-b94c-de3c4fef4169.svg)](https://wakatime.com/badge/user/a0b906ce-b8e7-4463-8bce-383238df6d4b/project/8609daf8-78e6-4e8e-b94c-de3c4fef4169)
 [![Vercel Deploy](https://deploy-badge.vercel.app/vercel/bridgecanada)](https://bridgecanada.ca)
 
-**Connecting Continents** - A professional business coordination service helping international delegations connect with Canadian entities.
+**Connecting Continents** — A professional business coordination service helping international delegations connect with Canadian entities.
+
+A static, scroll-driven Astro microsite for Bridge Canada’s VIP visit, delegation, and trade coordination services.
+
+---
 
 ## About
 
 Bridge Canada specializes in arranging comprehensive business trips to Canada, providing end-to-end coordination services including:
 
-- 🛂 VISA assistance and travel bookings
-- 🤝 Business meeting arrangements
-- 🚗 Transportation and logistics
-- 🏨 Luxury accommodations
-- 🍽️ Dining experiences
-- 🎁 Tourism and shopping coordination
+- 🛂 **VISA Assistance** and travel bookings
+- 🤝 **Business Meeting Arrangements** with Canadian entities
+- 🚗 **Private Transportation** and logistics
+- 🏨 **Luxury Accommodations** selected for privacy and proximity
+- 🍽️ **Hosted Dining** and refreshments
+- 🎁 **Tourism & Leisure** itineraries (sightseeing, shopping)
+- 📦 **Trade Coordination** for import/export (jute bags, cashew nuts, and other goods)
 
 We have successfully hosted government delegations from Bangladesh (Ministry of Industries, Education, Housing & Public Works) across multiple Canadian cities.
+
+---
 
 ## Tech Stack
 
 Built with modern web technologies:
 
-- **Framework**: [Next.js 16](https://nextjs.org) with App Router and Turbopack
-- **Runtime**: Bun >=1.3.0
-- **UI Components**: React 19 with Radix UI primitives
-- **Styling**: Tailwind CSS v4.1 with custom animations
-- **Animation**: Framer Motion / Motion
-- **Icons**: Tabler Icons, Lucide React
-- **Code Quality**: Biome 2 for linting & formatting
-- **Deployment**: Static export optimized for Vercel/GitHub Pages
+- **Framework**: [Astro 7](https://astro.build) (Static HTML & Component Engine)
+- **Runtime / Package Manager**: [Bun](https://bun.sh) (>=1.3.0)
+- **Language**: TypeScript with **ESNext** target & module resolution
+- **Styling**: Vanilla CSS with `@layer` architecture, custom animations, and responsive viewport units (`100svh`)
+- **Code Quality**: [Biome 2](https://biomejs.dev) for linting & formatting
+- **Deployment**: Static export (`output: 'static'`) optimized for Vercel and GitHub Pages
+
+---
 
 ## Getting Started
 
@@ -37,60 +44,70 @@ Install dependencies and run the development server:
 
 ```bash
 bun install
-bun dev
+bun run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the site.
+Open [http://localhost:4321](http://localhost:4321) to view the site.
+
+---
 
 ## Available Scripts
 
 ```bash
-bun dev       # Start development server with Turbopack
-bun build     # Build for production
-bun start     # Start production server
-bun lint      # Run Biome linter
-bun format    # Format code with Biome
+bun run dev          # Start development server
+bun run build        # Type-check and build static export to dist/
+bun run preview      # Preview the production build locally
+bun run check        # Run Astro & TypeScript type check
+bun run lint         # Run Biome linter check
+bun run format       # Format code with Biome
+bun run deploy       # Build and deploy directly to Cloudflare Workers via Wrangler
+bun run deploy:pages # Build and deploy to Cloudflare Pages via Wrangler
 ```
 
-> **Note**
->
-> Next.js 16 enables Google Fonts by default. The repository configures Turbopack to reuse system TLS certificates during builds,
-> which keeps static exports working reliably in headless CI environments.
+---
 
 ## Project Structure
 
 ```
-src/
-├── app/
-│   ├── layout.tsx          # Root layout with fonts
-│   ├── page.tsx            # Main landing page
-│   └── globals.css         # Global styles
-└── components/ui/
-    ├── BlockInTextCard.tsx # Contact section with typewriter
-    ├── ColourfulText.tsx   # Animated gradient text
-    ├── FocusCards.tsx      # Interactive card gallery
-    ├── MiniCard.tsx        # Service feature cards
-    ├── TextParallaxContent.tsx # Parallax scroll section
-    └── WobbleCard.tsx      # Interactive wobble cards
+.
+├── src/
+│   ├── pages/
+│   │   └── index.astro        # Main page markup & content structure
+│   ├── scripts/
+│   │   └── cinematic.ts       # Scroll timeline & itinerary rail interaction logic
+│   └── styles/
+│       └── global.css         # Art direction, depth layers, layout, reduced-motion
+├── public/
+│   └── assets/                # Optimized scene, brand, and itinerary assets
+├── .github/workflows/         # GitHub Actions for automated Cloudflare deployment
+├── wrangler.json              # Cloudflare Workers static asset configuration
+├── ASSET_MANIFEST.md          # Layer roles, dimensions, anchors, and source audit
+├── TIMELINE.md                # Normalized scene beats and retiming guide
+├── VERIFICATION.md            # Build and interaction QA record
+└── dist/                      # Production output directory (generated on build)
 ```
 
-## Configuration
+The site has no runtime server dependency and builds to `dist/`.
 
-- **Static Export**: Configured for static site generation (`output: 'export'`)
-- **Image Optimization**: Disabled for compatibility with static hosting
-- **Typed Routes**: Enabled for type-safe navigation
-- **Trailing Slash**: Enabled for better static hosting support
+---
+
+## Editing & Configuration
+
+- **Itinerary Content**: Lives in the `itinerary` array in the frontmatter of `src/pages/index.astro`.
+- **Timeline Boundaries**: Live in the single `beats` object in `src/scripts/cinematic.ts`. Adjust those boundaries before changing render math.
+- **Interactions**: The final rail supports control buttons, keyboard arrow navigation, Home/End keys, mouse drag, and native touch swipe. Every card and CTA triggers pre-addressed email actions.
+
+---
 
 ## Contact
 
-**Office Address**: 1390 Prince of Wales, Unit 508
+**Office Address**: 1390 Prince of Wales Drive, Unit 508 · Ottawa, Canada
 
-For inquiries about our services, contact us at: info@bridgecanada.ca
+For inquiries about our services, contact us at: [info@bridgecanada.ca](mailto:info@bridgecanada.ca)
 
-## License
+---
 
-MIT © 2021-2025 Bridge Canada N World
+## License & Repository
 
-## Repository
-
-[https://github.com/ragaeeb/bridgecanada](https://github.com/ragaeeb/bridgecanada)
+- **License**: MIT © 2021-2026 Bridge Canada N World
+- **Repository**: [https://github.com/ragaeeb/bridgecanada](https://github.com/ragaeeb/bridgecanada)

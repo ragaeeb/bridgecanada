@@ -1,0 +1,246 @@
+---
+import '../styles/global.css';
+
+const itinerary = [
+  {
+    image: '/assets/itinerary/arrival.webp',
+    step: '01',
+    title: 'Arrival, handled',
+    description: 'Airport welcome, private transport, and a calm first handoff from runway to residence.',
+    subject: 'Plan an arrival',
+  },
+  {
+    image: '/assets/itinerary/accommodation.webp',
+    step: '02',
+    title: 'A considered stay',
+    description: 'Lodging selected around your schedule, preferred standard, privacy, and proximity.',
+    subject: 'Arrange accommodation',
+  },
+  {
+    image: '/assets/itinerary/meetings.webp',
+    step: '03',
+    title: 'The right room',
+    description: 'Business meetings coordinated with Canadian entities, with follow-through built in.',
+    subject: 'Coordinate meetings',
+  },
+  {
+    image: '/assets/itinerary/dining.webp',
+    step: '04',
+    title: 'Hosted throughout',
+    description: 'Dining, refreshments, and the small courtesies that keep a demanding visit moving.',
+    subject: 'Plan hosted dining',
+  },
+  {
+    image: '/assets/itinerary/shopping.webp',
+    step: '05',
+    title: 'Canada, beyond business',
+    description: 'Sightseeing, shopping, and local experiences fitted naturally around the working day.',
+    subject: 'Build a leisure itinerary',
+  },
+  {
+    image: '/assets/itinerary/trade-mission.webp',
+    step: '06',
+    title: 'Trade, made tangible',
+    description: 'Import and export coordination for jute bags, cashew nuts, and other goods.',
+    subject: 'Discuss import and export',
+  },
+  {
+    image: '/assets/itinerary/education.webp',
+    step: '07',
+    title: 'Delegations welcomed',
+    description: 'Experienced support for government, education, and industry groups across Canada.',
+    subject: 'Host a delegation',
+  },
+  {
+    image: '/assets/itinerary/travel.webp',
+    step: '08',
+    title: 'One accountable partner',
+    description: 'From travel preparation to the final airport goodbye, one team holds the whole picture.',
+    subject: 'Start a conversation',
+  },
+];
+
+const contactEmail = 'info@bridgecanada.ca';
+const contactHref = `mailto:${contactEmail}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta
+      name="description"
+      content="Bridge Canada coordinates VIP visits, meetings, lodging, transport, leisure itineraries, and import-export opportunities across Canada."
+    />
+    <meta name="theme-color" content="#0a211b" />
+    <link rel="icon" type="image/png" href="/assets/brand/icon.png" />
+    <link
+      rel="preload"
+      as="image"
+      href="/assets/scene/toronto-panorama-1440.webp"
+      imagesrcset="/assets/scene/toronto-panorama-960.webp 960w, /assets/scene/toronto-panorama-1440.webp 1440w, /assets/scene/toronto-panorama-1672.webp 1672w"
+      imagesizes="100vw"
+    />
+    <title>Bridge Canada — Your visit, considered</title>
+  </head>
+  <body>
+    <a class="skip-link" href="#experience">Skip to the experience</a>
+    <main id="experience">
+      <section class="cinematic-scroll" data-cinematic aria-label="Bridge Canada story">
+        <div class="cinematic-stage">
+          <div class="world" aria-hidden="true">
+            <picture class="world-layer world-layer--far">
+              <source
+                srcset="/assets/scene/toronto-panorama-960.webp 960w, /assets/scene/toronto-panorama-1440.webp 1440w, /assets/scene/toronto-panorama-1672.webp 1672w"
+                sizes="100vw"
+                type="image/webp"
+              />
+              <img
+                src="/assets/scene/toronto-panorama-1440.webp"
+                width="1440"
+                height="810"
+                alt=""
+                fetchpriority="high"
+                decoding="async"
+              />
+            </picture>
+            <picture class="world-layer world-layer--mid">
+              <source
+                srcset="/assets/scene/toronto-panorama-960.webp 960w, /assets/scene/toronto-panorama-1440.webp 1440w, /assets/scene/toronto-panorama-1672.webp 1672w"
+                sizes="100vw"
+                type="image/webp"
+              />
+              <img
+                src="/assets/scene/toronto-panorama-1440.webp"
+                width="1440"
+                height="810"
+                alt=""
+                decoding="async"
+              />
+            </picture>
+            <div class="world-haze"></div>
+            <div class="world-route">
+              <span class="world-route__line"></span>
+              <span class="world-route__point world-route__point--a"></span>
+              <span class="world-route__point world-route__point--b"></span>
+            </div>
+            <div class="world-shade"></div>
+            <div class="world-grain"></div>
+          </div>
+
+          <div class="folio folio--left" aria-hidden="true">
+            <span class="folio__index">YOW / YYZ</span>
+            <span class="folio__rule"></span>
+            <span class="folio__word">ARRIVE</span>
+          </div>
+          <div class="folio folio--right" aria-hidden="true">
+            <span class="folio__index">CAN / 001</span>
+            <span class="folio__rule"></span>
+            <span class="folio__word">CONNECT</span>
+          </div>
+
+          <header class="site-header">
+            <button class="brand" type="button" data-jump="0" data-target="#experience" aria-label="Return to opening scene">
+              <img src="/assets/brand/icon.png" alt="" width="42" height="42" />
+              <span>Bridge Canada</span>
+            </button>
+            <nav aria-label="Primary navigation">
+              <button type="button" data-jump="0.27" data-target="#visit">Visit</button>
+              <button type="button" data-jump="0.58" data-target="#trade">Trade</button>
+              <button type="button" data-jump="0.9" data-target="#itinerary">Itinerary</button>
+            </nav>
+            <a class="header-contact" href={contactHref}>Contact us</a>
+          </header>
+
+          <div class="intro narrative">
+            <p class="eyebrow">Canadian visits, personally orchestrated</p>
+            <h1>Your arrival.<br /><em>Considered.</em></h1>
+            <p class="intro__body">
+              Meetings, lodging, transport, and the moments between — held together by one experienced Canadian host.
+            </p>
+            <button class="text-link" type="button" data-jump="0.27" data-target="#visit">
+              Enter the journey <span aria-hidden="true">↓</span>
+            </button>
+          </div>
+
+          <article class="panel panel--visit narrative" id="visit">
+            <p class="eyebrow">01 / A private welcome</p>
+            <h2>From runway<br />to boardroom.</h2>
+            <p>
+              We receive international VIPs and delegations with an itinerary shaped around the work: airport welcome,
+              private transport, accommodation, dining, and carefully coordinated meetings.
+            </p>
+            <dl class="facts">
+              <div><dt>One team</dt><dd>End-to-end coordination</dd></div>
+              <div><dt>Every detail</dt><dd>Business and leisure</dd></div>
+            </dl>
+          </article>
+
+          <article class="panel panel--trade narrative" id="trade">
+            <p class="eyebrow">02 / Across the table</p>
+            <h2>Trade with a<br />human connection.</h2>
+            <p>
+              Bridge Canada also supports import and export opportunities between Canada and international partners —
+              including jute bags, cashew nuts, and other products.
+            </p>
+            <a class="text-link" href="mailto:info@bridgecanada.ca?subject=Canada%20trade%20inquiry">
+              Discuss trade <span aria-hidden="true">↗</span>
+            </a>
+          </article>
+
+          <section class="catalog" id="itinerary" aria-labelledby="catalog-title">
+            <div class="catalog__heading">
+              <div>
+                <p class="eyebrow">03 / A visit in motion</p>
+                <h2 id="catalog-title">The itinerary,<br /><em>held together.</em></h2>
+              </div>
+              <div class="catalog__controls" aria-label="Itinerary controls">
+                <button class="round-button" type="button" data-rail-prev aria-label="Previous itinerary item">←</button>
+                <button class="round-button" type="button" data-rail-next aria-label="Next itinerary item">→</button>
+              </div>
+            </div>
+
+            <div class="rail" data-rail tabindex="0" aria-label="Bridge Canada itinerary">
+              <ul>
+                {itinerary.map((item) => (
+                  <li class="rail-card">
+                    <a href={`mailto:${contactEmail}?subject=${encodeURIComponent(item.subject)}`}>
+                      <div class="rail-card__image">
+                        <img
+                          src={item.image}
+                          alt=""
+                          width="900"
+                          height="675"
+                          loading="lazy"
+                          decoding="async"
+                        />
+                        <span>{item.step}</span>
+                      </div>
+                      <h3>{item.title}</h3>
+                      <p>{item.description}</p>
+                      <span class="rail-card__action">Ask about this <span aria-hidden="true">↗</span></span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <p class="sr-only" data-rail-status aria-live="polite">Itinerary item 1 of {itinerary.length}</p>
+
+            <div class="catalog__footer">
+              <p>Ready when you are.</p>
+              <a class="primary-cta" href={contactHref}>Contact us <span aria-hidden="true">↗</span></a>
+              <address>1390 Prince of Wales Drive, Unit 508 · Ottawa, Canada</address>
+            </div>
+          </section>
+
+          <div class="stage-frame" aria-hidden="true">
+            <span>45.4215° N</span>
+            <span>Canada · Worldwide</span>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script src="../scripts/cinematic.ts"></script>
+  </body>
+</html>

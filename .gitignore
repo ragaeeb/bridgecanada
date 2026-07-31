@@ -1,11 +1,4 @@
-Thumbs.db
+node_modules/
+dist/
+.astro/
 .DS_Store
-.dist
-.tmp
-.sass-cache
-npm-debug.log
-node_modules
-builds
-resources
-.next
-out
