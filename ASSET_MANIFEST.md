@@ -7,6 +7,7 @@ All scene layers share a 16:9 camera, bottom/center anchors, cool blue-hour ligh
 | Band | Role | Production asset | Dimensions | Alpha | Anchor and depth |
 | --- | --- | --- | --- | --- | --- |
 | 00 | Background / sky plate | `public/assets/scene/toronto-panorama-{960,1440,1672}.webp` | 960×540, 1440×810, 1672×941 | No | Center at 54%; farthest layer; smallest scale and pointer travel |
+| 05 | 3D WebGL Globe & Arcs | Three.js programmatic scene (`src/scripts/three-scene.ts`) | Canvas / Viewport | Yes | 3D Space; interactive rotation, international flight arcs & particle nebula |
 | 10 | Distant landscape | Aligned full-plate rendering of the same responsive source | Responsive | No | Horizon near 48%; far depth; deliberately locked to the 00 camera |
 | 20 | Midground environment | Lower 51% clipped rendering of the same responsive source | Responsive | CSS clip | Bottom-center; larger push-in and opposing pointer travel |
 | 30 | Hero object | Executive car and leather folio within the 20 pass | In master plate | No | Bottom-center/right; stable subject anchor |

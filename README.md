@@ -30,11 +30,12 @@ We have successfully hosted government delegations from Bangladesh (Ministry of 
 Built with modern web technologies:
 
 - **Framework**: [Astro 7](https://astro.build) (Static HTML & Component Engine)
+- **3D Graphics & WebGL**: [Three.js](https://threejs.org) (3D Connection Globe, Flight Arcs & Particle Nebula)
 - **Runtime / Package Manager**: [Bun](https://bun.sh) (>=1.3.0)
 - **Language**: TypeScript with **ESNext** target & module resolution
-- **Styling**: Vanilla CSS with `@layer` architecture, custom animations, and responsive viewport units (`100svh`)
+- **Styling**: Vanilla CSS with `@layer` architecture, 3D glassmorphism, specular lighting, and responsive viewport units (`100svh`)
 - **Code Quality**: [Biome 2](https://biomejs.dev) for linting & formatting
-- **Deployment**: Static export (`output: 'static'`) optimized for Vercel and GitHub Pages
+- **Deployment**: Static export (`output: 'static'`) optimized for Cloudflare and Vercel
 
 ---
 
@@ -72,11 +73,13 @@ bun run deploy:pages # Build and deploy to Cloudflare Pages via Wrangler
 .
 ├── src/
 │   ├── pages/
-│   │   └── index.astro        # Main page markup & content structure
+│   │   └── index.astro        # Main page markup, delegation customizer & content structure
 │   ├── scripts/
-│   │   └── cinematic.ts       # Scroll timeline & itinerary rail interaction logic
+│   │   ├── cinematic.ts       # Scroll timeline, HUD scrubber & event coordination
+│   │   ├── three-scene.ts     # Three.js 3D WebGL globe, route arcs & particle nebula
+│   │   └── tilt.ts            # 3D perspective card tilt & specular glare engine
 │   └── styles/
-│       └── global.css         # Art direction, depth layers, layout, reduced-motion
+│       └── global.css         # Art direction, glassmorphism, 3D depth, HUD & responsive rules
 ├── public/
 │   └── assets/                # Optimized scene, brand, and itinerary assets
 ├── .github/workflows/         # GitHub Actions for automated Cloudflare deployment
