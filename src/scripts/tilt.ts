@@ -1,15 +1,25 @@
-export function initCardTilts(container: HTMLElement = document.body) {
+export interface TiltController {
+  destroy(): void;
+}
+
+const activeElementCleanups = new WeakMap<HTMLElement, () => void>();
+
+export function initCardTilts(container: HTMLElement = document.body): TiltController {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   const coarsePointer = window.matchMedia('(pointer: coarse)').matches;
 
   if (reducedMotion || coarsePointer) {
-    return;
+    return {
+      destroy() {},
+    };
   }
 
+  const cleanups: (() => void)[] = [];
   const tiltElements = container.querySelectorAll<HTMLElement>('[data-tilt]');
 
   tiltElements.forEach((el) => {
-    let bounds: DOMRect | null = null;
+    activeElementCleanups.get(el)?.();
+
     let frameId = 0;
     let targetX = 0;
     let targetY = 0;
@@ -17,6 +27,12 @@ export function initCardTilts(container: HTMLElement = document.body) {
     let currentY = 0;
     const maxTilt = Number(el.dataset.tiltMax ?? 8);
     const maxLift = Number(el.dataset.tiltLift ?? 6);
+
+    // BR-077: Clean up any preexisting glare node before attaching new one (idempotent)
+    const existingGlare = el.querySelector(':scope > .card-glare');
+    if (existingGlare) {
+      existingGlare.remove();
+    }
 
     // Create glare layer if requested
     let glareEl: HTMLDivElement | null = null;
@@ -56,28 +72,77 @@ export function initCardTilts(container: HTMLElement = document.body) {
       }
     };
 
-    el.addEventListener('pointerenter', () => {
-      bounds = el.getBoundingClientRect();
-      el.classList.add('is-tilting');
-    });
-
-    el.addEventListener('pointermove', (e) => {
-      if (!bounds) {
-        bounds = el.getBoundingClientRect();
+    const onPointerEnter = () => {
+      // BR-045: Apply will-change only during active interaction
+      el.style.willChange = 'transform';
+      if (glareEl) {
+        glareEl.style.willChange = 'background';
       }
+      el.classList.add('is-tilting');
+    };
+
+    const onPointerMove = (e: PointerEvent) => {
+      // BR-032: Do not retain stale bounds across scroll/resize; compute fresh bounds
+      const bounds = el.getBoundingClientRect();
+      if (!bounds.width || !bounds.height) {
+        return;
+      }
+
       const x = (e.clientX - bounds.left) / bounds.width;
       const y = (e.clientY - bounds.top) / bounds.height;
       targetX = (x - 0.5) * 2;
       targetY = (y - 0.5) * 2;
       requestUpdate();
-    });
+    };
 
-    el.addEventListener('pointerleave', () => {
-      bounds = null;
+    const onPointerLeave = () => {
       targetX = 0;
       targetY = 0;
       requestUpdate();
       el.classList.remove('is-tilting');
-    });
+      // BR-045: Remove will-change hint when inactive
+      el.style.willChange = '';
+      if (glareEl) {
+        glareEl.style.willChange = '';
+      }
+    };
+
+    el.addEventListener('pointerenter', onPointerEnter);
+    el.addEventListener('pointermove', onPointerMove);
+    el.addEventListener('pointerleave', onPointerLeave);
+
+    const cleanup = () => {
+      if (activeElementCleanups.get(el) !== cleanup) {
+        return;
+      }
+      if (frameId) {
+        cancelAnimationFrame(frameId);
+        frameId = 0;
+      }
+      el.removeEventListener('pointerenter', onPointerEnter);
+      el.removeEventListener('pointermove', onPointerMove);
+      el.removeEventListener('pointerleave', onPointerLeave);
+      el.classList.remove('is-tilting');
+      el.style.willChange = '';
+      el.style.removeProperty('--tilt-rx');
+      el.style.removeProperty('--tilt-ry');
+      el.style.removeProperty('--tilt-tz');
+      if (glareEl && glareEl.parentNode === el) {
+        glareEl.remove();
+      }
+      if (activeElementCleanups.get(el) === cleanup) {
+        activeElementCleanups.delete(el);
+      }
+    };
+
+    activeElementCleanups.set(el, cleanup);
+    cleanups.push(cleanup);
   });
+
+  return {
+    destroy() {
+      cleanups.forEach((fn) => fn());
+      cleanups.length = 0;
+    },
+  };
 }

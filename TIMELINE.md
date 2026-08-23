@@ -22,7 +22,7 @@ The desktop scroll section is 4,800 CSS pixels. It shortens to 4,200 pixels belo
 
 ## Retiming
 
-All boundaries live in the `beats` object in `src/scripts/cinematic.ts`. Rendering uses `smoothstep`, `rangeProgress`, and `segmentInOut`; there are no duration values scattered through CSS.
+All boundaries live in the `beats` object in `src/scripts/cinematic.ts`. Rendering uses `smoothstep` and `segmentInOut`; there are no duration values scattered through CSS.
 
 The visual playhead eases toward scroll only for standard-motion users. Three.js camera position and rotation interpolate synchronously with the playhead. Pointer movement is smoothed separately and drives both 3D WebGL parallax and card specular glare. Reduced-motion users receive a clean static layout without 3D animation strain.
 

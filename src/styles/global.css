@@ -196,6 +196,9 @@
   }
 
   .cinematic-stage {
+    --header-block-size: 5.75rem;
+    --folio-header-gap: 0.75rem;
+    --header-safe-top: calc(var(--header-block-size) + var(--folio-header-gap) + env(safe-area-inset-top, 0px));
     --far-x: 0px;
     --far-y: 0px;
     --far-scale: 1.04;
@@ -230,6 +233,13 @@
     overflow: clip;
     isolation: isolate;
     background: var(--background);
+    opacity: 0;
+    transition: opacity 400ms ease-out;
+  }
+
+  .cinematic-stage.is-ready,
+  html:not(.js) .cinematic-stage {
+    opacity: 1;
   }
 
   .world {
@@ -385,10 +395,11 @@
   }
 
   .folio {
+    --folio-overhang: 4vh;
     position: absolute;
     z-index: 12;
-    top: -4%;
-    bottom: -4%;
+    top: calc(-1 * var(--folio-overhang));
+    bottom: calc(-1 * var(--folio-overhang));
     width: 27%;
     overflow: hidden;
     border-color: rgba(22, 51, 42, 0.25);
@@ -432,7 +443,7 @@
   }
 
   .folio__index {
-    top: 9%;
+    top: calc(var(--folio-overhang) + var(--header-safe-top));
     font-size: 0.64rem;
     font-weight: 700;
     letter-spacing: 0.22em;
@@ -449,8 +460,8 @@
   .folio__rule {
     position: absolute;
     z-index: 1;
-    top: 25%;
-    bottom: 40%;
+    top: calc(var(--folio-overhang) + 15rem + env(safe-area-inset-top, 0px));
+    bottom: 38%;
     left: calc(50% + 0.75rem);
     width: 1px;
     background: rgba(23, 52, 43, 0.25);
@@ -560,11 +571,23 @@
     display: flex;
     gap: 0.85rem;
     align-items: center;
-    border: 0;
-    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    background: rgba(4, 20, 16, 0.75);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    padding: 0.45rem 1rem 0.45rem 0.55rem;
+    border-radius: 999px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.35);
     color: inherit;
-    padding: 0;
     cursor: pointer;
+    transition:
+      background 180ms ease,
+      border-color 180ms ease;
+  }
+
+  .brand:hover {
+    background: rgba(6, 26, 21, 0.88);
+    border-color: rgba(232, 200, 137, 0.35);
   }
 
   .brand-badge {
@@ -600,16 +623,16 @@
     font-size: 1.18rem;
     font-weight: 700;
     letter-spacing: 0.03em;
-    color: #fff;
+    color: #ffffff;
     line-height: 1.1;
   }
 
   .brand-tagline {
     font-size: 0.65rem;
-    color: var(--gold);
+    color: var(--gold-light, #f0d6a3);
     letter-spacing: 0.12em;
     text-transform: uppercase;
-    font-weight: 600;
+    font-weight: 700;
   }
 
   .site-header nav {
@@ -742,7 +765,6 @@
     border-radius: inherit;
     z-index: 10;
     mix-blend-mode: overlay;
-    will-change: transform, opacity;
   }
 
   .card-badge {
@@ -772,8 +794,8 @@
   /* Beat 0: Hero Intro */
   .intro {
     top: 50%;
-    left: max(var(--page-pad), 27vw);
-    width: min(46rem, 48vw);
+    left: calc(27vw + var(--hero-inner-gutter, clamp(1.8rem, 3.2vw, 3.6rem)));
+    width: min(44rem, calc(46vw - (var(--hero-inner-gutter, clamp(1.8rem, 3.2vw, 3.6rem)) * 2)));
     opacity: var(--intro-opacity);
     transform: translate3d(0, calc(-48% + var(--intro-y)), 0);
     filter: blur(var(--intro-blur));
@@ -942,10 +964,15 @@
     position: absolute;
     top: 50%;
     width: min(34rem, 42vw);
+    max-height: calc(100vh - 8.5rem);
     max-height: calc(100svh - 8.5rem);
     overflow-y: auto;
     scrollbar-width: none;
     padding: clamp(1.3rem, 2.4vw, 2.2rem);
+  }
+
+  .panel::-webkit-scrollbar {
+    display: none;
   }
 
   .panel h2 {
@@ -1098,7 +1125,7 @@
     pointer-events: none;
   }
 
-  .catalog[style*="pointer-events: auto"] {
+  .catalog.is-active {
     pointer-events: auto;
   }
 
@@ -1159,7 +1186,7 @@
     scrollbar-width: none;
     scroll-padding-inline: var(--page-pad);
     scroll-snap-type: x mandatory;
-    touch-action: pan-x;
+    touch-action: pan-x pan-y pinch-zoom;
     cursor: grab;
   }
 
@@ -1389,12 +1416,15 @@
     visibility: hidden;
     transition:
       opacity 300ms ease,
-      visibility 300ms ease;
+      visibility 0s ease 300ms;
   }
 
   .customizer-modal.is-open {
     opacity: 1;
     visibility: visible;
+    transition:
+      opacity 300ms ease,
+      visibility 0s ease 0s;
   }
 
   .customizer-backdrop {
@@ -1479,18 +1509,25 @@
     margin-top: 1.8rem;
   }
 
-  .form-section {
+  fieldset.form-section {
     display: flex;
     flex-direction: column;
     gap: 0.8rem;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    min-width: 0;
   }
 
-  .form-label {
+  legend.form-label {
     font-size: 0.78rem;
     font-weight: 750;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--paper);
+    padding: 0;
+    margin-bottom: 0.8rem;
+    display: table;
   }
 
   .chip-group {
@@ -1522,6 +1559,11 @@
     font-size: 0.76rem;
     font-weight: 600;
     transition: all 180ms ease;
+  }
+
+  .chip input:focus-visible + span {
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
   }
 
   .chip input:checked + span {
@@ -1566,6 +1608,26 @@
     line-height: 1.5;
   }
 
+  .customizer-status {
+    padding: 0.85rem 1.1rem;
+    border-radius: var(--radius-sm);
+    background: rgba(16, 185, 129, 0.15);
+    border: 1px solid rgba(16, 185, 129, 0.4);
+    color: #fff;
+    font-size: 0.8rem;
+    line-height: 1.45;
+  }
+
+  .status-msg {
+    margin: 0;
+  }
+
+  .status-link {
+    color: var(--gold);
+    text-decoration: underline;
+    font-weight: 700;
+  }
+
   .customizer-actions {
     margin-top: auto;
     padding-top: 1.2rem;
@@ -1604,9 +1666,13 @@
       display: none;
     }
 
+    .folio {
+      width: 20%;
+    }
+
     .intro {
-      left: max(var(--page-pad), 16vw);
-      width: min(42rem, calc(84vw - var(--page-pad)));
+      left: calc(20vw + clamp(1.2rem, 2.5vw, 2.2rem));
+      width: min(38rem, calc(60vw - clamp(2.4rem, 5vw, 4.4rem)));
     }
   }
 
@@ -1620,6 +1686,10 @@
     }
 
     .site-header nav {
+      display: none;
+    }
+
+    .folio {
       display: none;
     }
 
@@ -1637,10 +1707,6 @@
     .panel--trade {
       right: auto;
       left: var(--page-pad);
-    }
-
-    .folio {
-      width: 22%;
     }
 
     .catalog {
@@ -1857,5 +1923,72 @@
     .rail-card__image img {
       transition: none;
     }
+  }
+
+  /* BR-098: Progressive enhancement when JavaScript is disabled */
+  html:not(.js) .cinematic-scroll {
+    height: auto;
+  }
+
+  html:not(.js) .cinematic-stage {
+    position: relative;
+    min-height: 0;
+    overflow: visible;
+    background: var(--background);
+  }
+
+  html:not(.js) .webgl-container,
+  html:not(.js) .cursor-glow,
+  html:not(.js) .folio,
+  html:not(.js) .world-route,
+  html:not(.js) .stage-frame,
+  html:not(.js) .waypoint-hud {
+    display: none;
+  }
+
+  html:not(.js) .world {
+    position: relative;
+    height: 60vh;
+    min-height: 24rem;
+  }
+
+  html:not(.js) .world-layer--mid {
+    display: none;
+  }
+
+  html:not(.js) .narrative,
+  html:not(.js) .intro,
+  html:not(.js) .panel,
+  html:not(.js) .panel--visit,
+  html:not(.js) .panel--trade,
+  html:not(.js) .catalog {
+    position: relative;
+    inset: auto;
+    width: auto;
+    max-width: none;
+    opacity: 1;
+    transform: none;
+    filter: none;
+    pointer-events: auto;
+  }
+
+  html:not(.js) .intro {
+    margin-top: -30vh;
+    padding: 0 var(--page-pad) 3rem;
+  }
+
+  html:not(.js) .panel {
+    margin: 0 var(--page-pad) 2rem;
+    background: var(--spruce);
+  }
+
+  html:not(.js) .catalog {
+    margin-top: 3rem;
+    padding: 3rem var(--page-pad);
+    background: #041410;
+  }
+
+  html:not(.js) .catalog__controls {
+    opacity: 1;
   }
 }

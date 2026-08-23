@@ -1,7 +1,6 @@
 # Bridge Canada
 
 [![wakatime](https://wakatime.com/badge/user/a0b906ce-b8e7-4463-8bce-383238df6d4b/project/8609daf8-78e6-4e8e-b94c-de3c4fef4169.svg)](https://wakatime.com/badge/user/a0b906ce-b8e7-4463-8bce-383238df6d4b/project/8609daf8-78e6-4e8e-b94c-de3c4fef4169)
-[![Vercel Deploy](https://deploy-badge.vercel.app/vercel/bridgecanada)](https://bridgecanada.ca)
 
 **Connecting Continents** — A professional business coordination service helping international delegations connect with Canadian entities.
 
@@ -31,11 +30,11 @@ Built with modern web technologies:
 
 - **Framework**: [Astro 7](https://astro.build) (Static HTML & Component Engine)
 - **3D Graphics & WebGL**: [Three.js](https://threejs.org) (3D Connection Globe, Flight Arcs & Particle Nebula)
-- **Runtime / Package Manager**: [Bun](https://bun.sh) (>=1.3.0)
+- **Runtime / Package Manager**: [Bun](https://bun.sh) 1.4.0 (minimum supported version: 1.3.14)
 - **Language**: TypeScript with **ESNext** target & module resolution
 - **Styling**: Vanilla CSS with `@layer` architecture, 3D glassmorphism, specular lighting, and responsive viewport units (`100svh`)
 - **Code Quality**: [Biome 2](https://biomejs.dev) for linting & formatting
-- **Deployment**: Static export (`output: 'static'`) optimized for Cloudflare and Vercel
+- **Deployment**: Static export (`output: 'static'`) served by Cloudflare Workers static assets
 
 ---
 
@@ -59,10 +58,11 @@ bun run dev          # Start development server
 bun run build        # Type-check and build static export to dist/
 bun run preview      # Preview the production build locally
 bun run check        # Run Astro & TypeScript type check
+bun typecheck        # Alias for the required Astro & TypeScript type check
 bun run lint         # Run Biome linter check
+bun test             # Run Bun unit and project-contract tests
 bun run format       # Format code with Biome
 bun run deploy       # Build and deploy directly to Cloudflare Workers via Wrangler
-bun run deploy:pages # Build and deploy to Cloudflare Pages via Wrangler
 ```
 
 ---
@@ -82,7 +82,8 @@ bun run deploy:pages # Build and deploy to Cloudflare Pages via Wrangler
 │       └── global.css         # Art direction, glassmorphism, 3D depth, HUD & responsive rules
 ├── public/
 │   └── assets/                # Optimized scene, brand, and itinerary assets
-├── .github/workflows/         # GitHub Actions for automated Cloudflare deployment
+├── tests/                     # Bun tests for runtime behavior and project contracts
+├── .github/workflows/ci.yml   # GitHub Actions verification (lint, types, tests, build)
 ├── wrangler.json              # Cloudflare Workers static asset configuration
 ├── ASSET_MANIFEST.md          # Layer roles, dimensions, anchors, and source audit
 ├── TIMELINE.md                # Normalized scene beats and retiming guide
@@ -91,6 +92,8 @@ bun run deploy:pages # Build and deploy to Cloudflare Pages via Wrangler
 ```
 
 The site has no runtime server dependency and builds to `dist/`.
+
+Pull requests and pushes to `master` run the same lint, type-check, test, and build gates used locally. Production deployment remains an explicit `bun run deploy` operation and requires an authenticated Wrangler session.
 
 ---
 

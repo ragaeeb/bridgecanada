@@ -1,17 +1,18 @@
 # Verification
 
+This file defines the release checks; it is not a permanent claim that the current checkout has passed them. Record dated execution evidence in the pull request or release notes.
+
 ## Automated
 
-- `bun run check` — Astro & TypeScript type check: 0 errors, 0 warnings, 0 hints
-- `bun run lint` — Biome linter check: 0 errors, 0 warnings across all files
-- `bun run build` — Full static production export builds cleanly to `dist/`
-- Static output — pure client-side static route, zero server runtime dependency
-- WebGL / Canvas — Three.js renders 3D connected globe, curved flight arcs, and particle nebula with automatic DPI clamping
-- 3D Physics — Perspective tilt (`rotateX`, `rotateY`, `translateZ`) and specular lighting glare on pointer move
+- `bun lint` — Biome checks supported source and configuration files.
+- `bun typecheck` — Astro and TypeScript check templates and TypeScript modules.
+- `bun test` — Bun runs behavior and project-contract tests, including local asset references.
+- `bun run build` — Type-checks and produces the static site in `dist/`.
+- Confirm `dist/404.html`, `dist/_headers`, `dist/robots.txt`, and `dist/sitemap.xml` exist after the build.
 
 ## Visual checkpoints
 
-Inspected scrolling down and back up across timeline:
+Verify scrolling down and back up across the timeline at each release:
 
 - `p=0.00` Hero overview: 3D interactive connection globe rotating on right, glowing status indicator, stats ribbon
 - `p=0.18` Hero exit: Camera glides toward Canadian gateway coordinates; smooth blur/fade
@@ -24,10 +25,18 @@ Inspected scrolling down and back up across timeline:
 
 ## Responsive
 
-- 1440×900+ desktop — Complete timeline, 3D WebGL globe, cursor glow follower, waypoint HUD
+- 1844×882 wide desktop — Folio labels clear the header and hero content remains inside the photographic center
+- 1440×900 desktop — Complete timeline, 3D WebGL globe, cursor glow follower, waypoint HUD
 - 1024×768 tablet landscape — Scaled 3D scene, responsive glass cards, touch coverflow rail
 - 768×1024 tablet portrait — Adaptive layout, touch swipe rail, full delegation customizer
-- 390×844 mobile — Streamlined single-column layout, touch drag rail, instant modal builder
+- 390×844 mobile — Single-column layout, touch drag rail, delegation customizer
+
+At scroll position zero on desktop widths, compare rendered geometry rather than relying on CSS tokens alone:
+
+- Both `.folio__index` rectangles must start below `.site-header` (`index.top > header.bottom`).
+- `.intro` must start to the right of `.folio--left` and end to the left of `.folio--right`.
+- Run those checks at 1844×882, 1440×900, and 1024×768; confirm no horizontal document overflow.
+- At 768×1024 and 390×844, confirm the folios are hidden and the intro remains inside `.cinematic-stage`.
 
 ## Interaction and accessibility
 
@@ -35,4 +44,6 @@ Inspected scrolling down and back up across timeline:
 - **Waypoint HUD**: Clickable waypoint dots and real-time scroll scrubber on right desktop edge
 - **3D Card Tilts**: Mouse hover triggers smooth spring-damped 3D perspective tilt and dynamic specular light glare
 - **3D Itinerary Rail**: Supports prev/next buttons, drag, touch swipe, keyboard arrows, Home/End keys
-- **Reduced Motion**: When `prefers-reduced-motion: reduce` is enabled, 3D WebGL and timeline smoothing disable gracefully to provide a clean static reading experience with all interactive features accessible
+- **Reduced Motion**: Toggle `prefers-reduced-motion` while the page is open and confirm WebGL and timeline motion stop while controls remain usable.
+- **Keyboard and focus**: Confirm the itinerary rail, waypoint controls, and customizer can be operated without a pointer and that modal focus is contained and restored.
+- **Fallbacks**: Confirm the narrative remains readable with JavaScript disabled and when WebGL initialization is unavailable.
