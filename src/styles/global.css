@@ -222,6 +222,8 @@
     position: sticky;
     z-index: 0;
     top: 0;
+    height: 100vh;
+    height: 100svh;
     min-height: 100vh;
     min-height: 100svh;
     overflow: hidden;
@@ -937,6 +939,7 @@
 
   /* Beat 1 & 2: Narrative Panels */
   .panel {
+    position: absolute;
     top: 50%;
     width: min(34rem, 42vw);
     max-height: calc(100svh - 8.5rem);
@@ -1685,7 +1688,7 @@
     }
 
     .folio {
-      width: 10%;
+      display: none;
     }
 
     .folio__word {
