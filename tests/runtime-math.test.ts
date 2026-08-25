@@ -12,7 +12,7 @@ import {
   segmentInOut,
   smoothstep,
 } from '../src/scripts/cinematic.ts';
-import { computeResponsiveGlobeLayout } from '../src/scripts/three-scene.ts';
+import { computeResponsiveGlobeLayout, disposeThreeRenderer } from '../src/scripts/three-scene.ts';
 
 describe('timeline and interaction math helpers', () => {
   test('clamp bounds values between min and max', () => {
@@ -105,6 +105,17 @@ describe('timeline and interaction math helpers', () => {
     const mobile = computeResponsiveGlobeLayout(390, 844);
     expect(mobile.scale).toBeCloseTo(0.58);
     expect(mobile.horizontalOffsetScale).toBeLessThan(0.05);
+  });
+
+  test('forces WebGL context loss immediately before disposing the renderer', () => {
+    const calls: string[] = [];
+
+    disposeThreeRenderer({
+      forceContextLoss: () => calls.push('forceContextLoss'),
+      dispose: () => calls.push('dispose'),
+    });
+
+    expect(calls).toEqual(['forceContextLoss', 'dispose']);
   });
 
   test('delegation inquiry formats structured email parameters', () => {

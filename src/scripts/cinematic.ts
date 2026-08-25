@@ -447,7 +447,10 @@ export function initCinematic(root: Document | HTMLElement = document): Cinemati
     if (typeof window !== 'undefined' && typeof window.requestAnimationFrame !== 'undefined') {
       return window.requestAnimationFrame(cb);
     }
-    return setTimeout(cb, 16) as unknown as number;
+    return setTimeout(
+      () => cb(typeof performance === 'undefined' ? Date.now() : performance.now()),
+      16,
+    ) as unknown as number;
   };
 
   const safeCancelRAF = (id: number): void => {
@@ -582,6 +585,7 @@ export function initCinematic(root: Document | HTMLElement = document): Cinemati
     let dragStartX = 0;
     let dragStartScroll = 0;
     let dragged = false;
+    let suppressNextClick = false;
     let isPointerDown = false;
 
     const activeIndex = () => {
@@ -630,6 +634,7 @@ export function initCinematic(root: Document | HTMLElement = document): Cinemati
       dragStartX = event.clientX;
       dragStartScroll = rail.scrollLeft;
       dragged = false;
+      suppressNextClick = false;
       try {
         rail.setPointerCapture(event.pointerId);
       } catch {
@@ -652,6 +657,7 @@ export function initCinematic(root: Document | HTMLElement = document): Cinemati
     // BR-027: Handle pointerup, pointercancel, and lost capture
     const clearDragState = (event?: PointerEvent) => {
       isPointerDown = false;
+      dragged = false;
       if (event && rail.hasPointerCapture(event.pointerId)) {
         try {
           rail.releasePointerCapture(event.pointerId);
@@ -663,11 +669,16 @@ export function initCinematic(root: Document | HTMLElement = document): Cinemati
       announce();
     };
 
+    const onPointerUp = (event: PointerEvent) => {
+      suppressNextClick = dragged;
+      clearDragState(event);
+    };
+
     const onRailClick = (event: MouseEvent) => {
-      if (dragged) {
+      if (suppressNextClick) {
         event.preventDefault();
         event.stopPropagation();
-        dragged = false;
+        suppressNextClick = false;
       }
     };
 
@@ -696,7 +707,7 @@ export function initCinematic(root: Document | HTMLElement = document): Cinemati
 
     rail.addEventListener('pointerdown', onPointerDown);
     rail.addEventListener('pointermove', onPointerMoveRail);
-    rail.addEventListener('pointerup', clearDragState);
+    rail.addEventListener('pointerup', onPointerUp);
     rail.addEventListener('pointercancel', clearDragState);
     rail.addEventListener('lostpointercapture', clearDragState);
     rail.addEventListener('click', onRailClick, true);
@@ -711,7 +722,7 @@ export function initCinematic(root: Document | HTMLElement = document): Cinemati
       rail.removeEventListener('scroll', announce);
       rail.removeEventListener('pointerdown', onPointerDown);
       rail.removeEventListener('pointermove', onPointerMoveRail);
-      rail.removeEventListener('pointerup', clearDragState);
+      rail.removeEventListener('pointerup', onPointerUp);
       rail.removeEventListener('pointercancel', clearDragState);
       rail.removeEventListener('lostpointercapture', clearDragState);
       rail.removeEventListener('click', onRailClick, true);

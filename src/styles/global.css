@@ -59,7 +59,7 @@
     --shadow: 0 2rem 5rem rgba(0, 0, 0, 0.45);
     --shadow-glow: 0 1rem 3rem rgba(16, 185, 129, 0.15);
     --display: "Iowan Old Style", "Baskerville", "Palatino Linotype", "Georgia", serif;
-    --sans: "Avenir Next", "Segoe UI", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    --sans: "Avenir Next", "Segoe UI", -apple-system, blinkmacsystemfont, "Helvetica Neue", sans-serif;
     --step--1: clamp(0.75rem, 0.7rem + 0.2vw, 0.88rem);
     --step-0: clamp(0.98rem, 0.92rem + 0.3vw, 1.15rem);
     --step-1: clamp(1.25rem, 1.05rem + 0.8vw, 1.85rem);
@@ -222,6 +222,7 @@
     --catalog-opacity: 0;
     --catalog-y: 76px;
     --controls-opacity: 0;
+
     position: sticky;
     z-index: 0;
     top: 0;
@@ -396,6 +397,7 @@
 
   .folio {
     --folio-overhang: 4vh;
+
     position: absolute;
     z-index: 12;
     top: calc(-1 * var(--folio-overhang));
@@ -695,7 +697,7 @@
 
   .header-contact {
     padding-bottom: 0.25rem;
-    border-bottom: 1px solid currentColor;
+    border-bottom: 1px solid currentcolor;
     font-size: 0.74rem;
     font-weight: 700;
     letter-spacing: 0.12em;

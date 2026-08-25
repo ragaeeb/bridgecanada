@@ -3,6 +3,7 @@ export interface TiltController {
 }
 
 const activeElementCleanups = new WeakMap<HTMLElement, () => void>();
+const TILT_RESPONSE_RATE = -Math.log(1 - 0.12) * 60;
 
 export function initCardTilts(container: HTMLElement = document.body): TiltController {
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -25,6 +26,7 @@ export function initCardTilts(container: HTMLElement = document.body): TiltContr
     let targetY = 0;
     let currentX = 0;
     let currentY = 0;
+    let lastTime: number | null = null;
     const maxTilt = Number(el.dataset.tiltMax ?? 8);
     const maxLift = Number(el.dataset.tiltLift ?? 6);
 
@@ -42,10 +44,13 @@ export function initCardTilts(container: HTMLElement = document.body): TiltContr
       el.appendChild(glareEl);
     }
 
-    const update = () => {
+    const update = (timestamp: number) => {
       frameId = 0;
-      currentX += (targetX - currentX) * 0.12;
-      currentY += (targetY - currentY) * 0.12;
+      const deltaSeconds = lastTime === null ? 1 / 60 : Math.max(0, (timestamp - lastTime) / 1_000);
+      lastTime = timestamp;
+      const interpolation = 1 - Math.exp(-TILT_RESPONSE_RATE * deltaSeconds);
+      currentX += (targetX - currentX) * interpolation;
+      currentY += (targetY - currentY) * interpolation;
 
       const rotateX = -currentY * maxTilt;
       const rotateY = currentX * maxTilt;
@@ -63,11 +68,14 @@ export function initCardTilts(container: HTMLElement = document.body): TiltContr
 
       if (Math.abs(targetX - currentX) > 0.005 || Math.abs(targetY - currentY) > 0.005) {
         frameId = requestAnimationFrame(update);
+      } else {
+        lastTime = null;
       }
     };
 
     const requestUpdate = () => {
       if (!frameId) {
+        lastTime = null;
         frameId = requestAnimationFrame(update);
       }
     };

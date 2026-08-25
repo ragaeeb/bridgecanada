@@ -1,5 +1,12 @@
-import { afterAll, beforeAll, describe, expect, test } from 'bun:test';
+import { afterAll, afterEach, beforeAll, describe, expect, test } from 'bun:test';
 import { initCinematic } from '../src/scripts/cinematic.ts';
+
+const standardMatchMedia = (query: string) => ({
+  matches: false,
+  media: query,
+  addEventListener: () => {},
+  removeEventListener: () => {},
+});
 
 function matchesSelector(node: any, sel: string): boolean {
   if (sel.startsWith('#')) {
@@ -26,6 +33,7 @@ function createNode(tag: string, attrs: Record<string, string> = {}) {
   const nodeStyle = new Map<string, string>();
   const nodeAttrs = { ...attrs };
   const nodeListeners: Record<string, ((...args: any[]) => void)[]> = {};
+  const capturedPointers = new Set<number>();
 
   const node: any = {
     tagName: tag.toUpperCase(),
@@ -133,12 +141,30 @@ function createNode(tag: string, attrs: Record<string, string> = {}) {
         nodeListeners[event] = nodeListeners[event].filter((f) => f !== fn);
       }
     },
-    click: () => {
-      const handlers = nodeListeners.click || [];
+    dispatch: (event: string, init: Record<string, any> = {}) => {
+      const mockEvent = {
+        ...init,
+        currentTarget: node,
+        target: init.target ?? node,
+        defaultPrevented: false,
+        propagationStopped: false,
+        preventDefault() {
+          this.defaultPrevented = true;
+        },
+        stopPropagation() {
+          this.propagationStopped = true;
+        },
+      };
+      const handlers = nodeListeners[event] || [];
       for (const h of handlers) {
-        h({ currentTarget: node, target: node, preventDefault: () => {}, stopPropagation: () => {} });
+        h(mockEvent);
       }
+      return mockEvent;
     },
+    click: () => node.dispatch('click'),
+    setPointerCapture: (pointerId: number) => capturedPointers.add(pointerId),
+    hasPointerCapture: (pointerId: number) => capturedPointers.has(pointerId),
+    releasePointerCapture: (pointerId: number) => capturedPointers.delete(pointerId),
     scrollIntoView: (options?: any) => {
       node.lastScrollIntoViewOptions = options;
       node.scrollIntoViewCalls = (node.scrollIntoViewCalls || 0) + 1;
@@ -148,6 +174,7 @@ function createNode(tag: string, attrs: Record<string, string> = {}) {
     clientWidth: 800,
     scrollLeft: 0,
     clientHeight: 600,
+    offsetHeight: 2400,
     offsetLeft: 0,
     scrollTo: () => {},
     focus: () => {},
@@ -263,12 +290,7 @@ describe('cinematic lifecycle and controller', () => {
       scrollTo: () => {},
       setTimeout: globalThis.setTimeout,
       clearTimeout: globalThis.clearTimeout,
-      matchMedia: (query: string) => ({
-        matches: false,
-        media: query,
-        addEventListener: () => {},
-        removeEventListener: () => {},
-      }),
+      matchMedia: standardMatchMedia,
       addEventListener: () => {},
       removeEventListener: () => {},
     };
@@ -298,6 +320,10 @@ describe('cinematic lifecycle and controller', () => {
     (globalThis as any).document = origDoc;
   });
 
+  afterEach(() => {
+    (globalThis as any).window.matchMedia = standardMatchMedia;
+  });
+
   test('initializes controller and exports structured beats', () => {
     const { root } = createMockCinematicDOM();
     const ctrl = initCinematic(root as any);
@@ -325,7 +351,7 @@ describe('cinematic lifecycle and controller', () => {
     }).not.toThrow();
   });
 
-  test('standard-motion jump controls trigger window.scrollTo with smooth behavior and calculated progress', () => {
+  test('standard-motion jump controls trigger window.scrollTo with smooth behavior and calculated progress', async () => {
     const { root, hudDot2, hudDot3, hudDot4, brandBtn, navBtnVisit } = createMockCinematicDOM();
     const scrollToCalls: any[] = [];
 
@@ -335,6 +361,7 @@ describe('cinematic lifecycle and controller', () => {
 
     const ctrl = initCinematic(root as any);
     expect(ctrl).not.toBeNull();
+    await Bun.sleep(0);
 
     // Click brand (jump 0)
     brandBtn.click();
@@ -346,7 +373,7 @@ describe('cinematic lifecycle and controller', () => {
     hudDot2.click();
     expect(scrollToCalls.length).toBe(2);
     expect(scrollToCalls[1].behavior).toBe('smooth');
-    expect(scrollToCalls[1].top).toBeGreaterThan(0);
+    expect(scrollToCalls[1].top).toBeCloseTo((2400 - 768) * 0.27);
 
     // Click Header Nav Protocol button (jump 0.27)
     navBtnVisit.click();
@@ -367,6 +394,46 @@ describe('cinematic lifecycle and controller', () => {
 
     ctrl?.destroy();
   });
+
+  test('timer-backed animation frames receive a finite timestamp', async () => {
+    const { root, stage } = createMockCinematicDOM();
+    const ctrl = initCinematic(root as any);
+
+    await Bun.sleep(25);
+
+    const introOpacity = stage.style.getPropertyValue('--intro-opacity');
+    expect(introOpacity).not.toBe('');
+    expect(introOpacity).not.toContain('NaN');
+
+    ctrl?.destroy();
+  });
+
+  test('completed rail drags suppress the following click after pointer capture is lost', () => {
+    const { root, rail } = createMockCinematicDOM();
+    const ctrl = initCinematic(root as any);
+
+    rail.dispatch('pointerdown', { pointerType: 'mouse', button: 0, pointerId: 1, clientX: 100 });
+    rail.dispatch('pointermove', { pointerId: 1, clientX: 80 });
+    rail.dispatch('pointerup', { pointerId: 1 });
+    rail.dispatch('lostpointercapture', { pointerId: 1 });
+
+    expect(rail.click().defaultPrevented).toBe(true);
+    ctrl?.destroy();
+  });
+
+  for (const interruption of ['pointercancel', 'lostpointercapture'] as const) {
+    test(`${interruption} clears drag click suppression`, () => {
+      const { root, rail } = createMockCinematicDOM();
+      const ctrl = initCinematic(root as any);
+
+      rail.dispatch('pointerdown', { pointerType: 'mouse', button: 0, pointerId: 1, clientX: 100 });
+      rail.dispatch('pointermove', { pointerId: 1, clientX: 80 });
+      rail.dispatch(interruption, { pointerId: 1 });
+
+      expect(rail.click().defaultPrevented).toBe(false);
+      ctrl?.destroy();
+    });
+  }
 
   test('reduced-motion navigation resolves each HUD dot to its corresponding section target', () => {
     const { root, section, panelVisit, panelTrade, catalog, hudDot1, hudDot2, hudDot3, hudDot4, navBtnTrade } =
@@ -411,14 +478,6 @@ describe('cinematic lifecycle and controller', () => {
     expect(section.scrollIntoViewCalls).toBe(1);
 
     ctrl?.destroy();
-
-    // Reset matchMedia
-    (globalThis as any).window.matchMedia = (query: string) => ({
-      matches: false,
-      media: query,
-      addEventListener: () => {},
-      removeEventListener: () => {},
-    });
   });
 
   test('reduced-motion navigation resolves controls without data-target via progress fallback', () => {
@@ -452,12 +511,5 @@ describe('cinematic lifecycle and controller', () => {
     expect(catalog.scrollIntoViewCalls).toBe(1);
 
     ctrl?.destroy();
-
-    (globalThis as any).window.matchMedia = (query: string) => ({
-      matches: false,
-      media: query,
-      addEventListener: () => {},
-      removeEventListener: () => {},
-    });
   });
 });

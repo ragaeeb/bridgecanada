@@ -16,6 +16,11 @@ export function computeResponsiveGlobeLayout(width: number, height: number) {
   };
 }
 
+export function disposeThreeRenderer(renderer: { forceContextLoss(): void; dispose(): void }) {
+  renderer.forceContextLoss();
+  renderer.dispose();
+}
+
 // Convert Lat/Lng to 3D Cartesian coordinates on sphere of radius R
 function latLngToVector3(lat: number, lng: number, radius: number): THREE.Vector3 {
   const phi = (90 - lat) * (Math.PI / 180);
@@ -436,7 +441,7 @@ export function initThreeScene(container: HTMLElement): ThreeSceneController | n
         geometriesToDispose.forEach((geo) => geo.dispose());
         materialsToDispose.forEach((mat) => mat.dispose());
 
-        renderer.dispose();
+        disposeThreeRenderer(renderer);
       },
     };
   } catch {
