@@ -6,7 +6,8 @@ All scene layers share a 16:9 camera, bottom/center anchors, cool blue-hour ligh
 
 | Band | Role | Production asset | Dimensions | Alpha | Anchor and depth |
 | --- | --- | --- | --- | --- | --- |
-| 00 | Background / sky plate | `public/assets/scene/toronto-panorama-{960,1440,1672}.webp` | 960×540, 1440×810, 1672×941 | No | Center at 54%; farthest layer; smallest scale and pointer travel |
+| 00 | Background / sky plate | `public/assets/scene/toronto-panorama-{960,1440,1672}.webp` | 960×540, 1440×810, 1672×941 | No | Center at 54%; farthest layer; smallest scale and pointer travel; 1440 variant is also the social preview image |
+| 05 | 3D WebGL Globe & Arcs | Three.js programmatic scene (`src/scripts/three-scene.ts`) | Canvas / Viewport | Yes | 3D Space; interactive rotation, international flight arcs & particle nebula |
 | 10 | Distant landscape | Aligned full-plate rendering of the same responsive source | Responsive | No | Horizon near 48%; far depth; deliberately locked to the 00 camera |
 | 20 | Midground environment | Lower 51% clipped rendering of the same responsive source | Responsive | CSS clip | Bottom-center; larger push-in and opposing pointer travel |
 | 30 | Hero object | Executive car and leather folio within the 20 pass | In master plate | No | Bottom-center/right; stable subject anchor |
@@ -71,4 +72,22 @@ The supplied legacy directory contained 22 public images plus the application ic
 
 ## Production notes
 
-There are no visible placeholders or missing assets in the shipped page. If stronger physical parallax is desired later, request separately rendered transparent shoreline/car and left/right foreground plates from the panorama master; the current source library does not contain those aligned layers.
+`tests/project-contract.test.ts` verifies that local image paths referenced by the home page and exact production asset paths documented here exist. Responsive derivatives remain an explicit asset-production step; place every shipped variant under `public/assets/` and update this manifest in the same change.
+
+Build-validated production inventory:
+
+- `public/assets/brand/icon.png`
+- `public/assets/itinerary/accommodation.webp`
+- `public/assets/itinerary/arrival.webp`
+- `public/assets/itinerary/dining.webp`
+- `public/assets/itinerary/education.webp`
+- `public/assets/itinerary/meetings.webp`
+- `public/assets/itinerary/shopping.webp`
+- `public/assets/itinerary/trade-mission.webp`
+- `public/assets/itinerary/travel.webp`
+- `public/assets/scene/grain.webp`
+- `public/assets/scene/toronto-panorama-960.webp`
+- `public/assets/scene/toronto-panorama-1440.webp`
+- `public/assets/scene/toronto-panorama-1672.webp`
+
+If stronger physical parallax is desired later, request separately rendered transparent shoreline/car and left/right foreground plates from the panorama master; the current source library does not contain those aligned layers.

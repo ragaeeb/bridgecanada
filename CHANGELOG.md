@@ -1,3 +1,14 @@
+# Changelog
+
+## Unreleased
+
+### Changed
+
+- Align the documented and declared Bun toolchain with Bun 1.4.0 and TypeScript 6.
+- Standardize deployment documentation on Cloudflare Workers static assets.
+- Add CI verification, Bun project-contract tests, security headers, crawler discovery files, and a branded 404 route.
+- Harden the cinematic lifecycle, modal accessibility, responsive hero gutters, and header-safe folio labels.
+
 ## [1.0.1](https://github.com/ragaeeb/bridgecanada/compare/v1.0.0...v1.0.1) (2025-12-27)
 
 

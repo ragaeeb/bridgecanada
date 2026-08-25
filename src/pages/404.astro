@@ -1,0 +1,63 @@
+---
+import '../styles/global.css';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#040f0c" />
+    <link rel="icon" type="image/png" sizes="42x42" href="/assets/brand/icon.png" />
+    <title>Page not found — Bridge Canada</title>
+  </head>
+  <body class="not-found-page">
+    <main>
+      <img src="/assets/brand/icon.png" alt="" width="42" height="42" />
+      <p>404 / Route unavailable</p>
+      <h1>This destination is not on the itinerary.</h1>
+      <a href="/">Return to Bridge Canada</a>
+    </main>
+  </body>
+</html>
+
+<style>
+  .not-found-page {
+    min-height: 100vh;
+    min-height: 100svh;
+    margin: 0;
+    display: grid;
+    place-items: center;
+    color: #f4f0e6;
+    background: radial-gradient(circle at 70% 20%, #164f43 0, #071b16 38%, #040f0c 72%);
+    font-family: Inter, ui-sans-serif, system-ui, sans-serif;
+  }
+
+  .not-found-page main {
+    width: min(38rem, calc(100% - 3rem));
+  }
+
+  .not-found-page p {
+    margin: 2rem 0 0.75rem;
+    color: #b5d7ca;
+    font-size: 0.75rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .not-found-page h1 {
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', serif;
+    font-size: clamp(2.5rem, 8vw, 5.5rem);
+    font-weight: 400;
+    line-height: 0.95;
+  }
+
+  .not-found-page a {
+    display: inline-block;
+    margin-top: 2rem;
+    color: #f4f0e6;
+    text-underline-offset: 0.3em;
+  }
+</style>

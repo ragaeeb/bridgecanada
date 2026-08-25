@@ -1,67 +1,100 @@
 ---
+import { CONTACT_EMAIL, CONTACT_HREF } from '../config/contact.ts';
 import '../styles/global.css';
 
 const itinerary = [
   {
     image: '/assets/itinerary/arrival.webp',
     step: '01',
+    category: 'VIP Protocol',
     title: 'Arrival, handled',
-    description: 'Airport welcome, private transport, and a calm first handoff from runway to residence.',
-    subject: 'Plan an arrival',
+    description: 'Airport airside welcome, private secure transport, and a calm first handoff from runway to residence.',
+    subject: 'Plan an arrival protocol',
   },
   {
     image: '/assets/itinerary/accommodation.webp',
     step: '02',
+    category: 'Accommodations',
     title: 'A considered stay',
-    description: 'Lodging selected around your schedule, preferred standard, privacy, and proximity.',
-    subject: 'Arrange accommodation',
+    description: 'Five-star lodging selected around your schedule, discretion, executive standards, and embassy proximity.',
+    subject: 'Arrange executive accommodation',
   },
   {
     image: '/assets/itinerary/meetings.webp',
     step: '03',
+    category: 'Diplomacy & B2B',
     title: 'The right room',
-    description: 'Business meetings coordinated with Canadian entities, with follow-through built in.',
-    subject: 'Coordinate meetings',
+    description: 'Bilateral meetings & roundtables coordinated with Canadian federal, provincial, and industry leaders.',
+    subject: 'Coordinate bilateral meetings',
   },
   {
     image: '/assets/itinerary/dining.webp',
     step: '04',
+    category: 'Hospitality',
     title: 'Hosted throughout',
-    description: 'Dining, refreshments, and the small courtesies that keep a demanding visit moving.',
-    subject: 'Plan hosted dining',
+    description: 'Private dining, fine culinary experiences, and high-touch courtesies that keep high-stakes visits seamless.',
+    subject: 'Plan hosted dining itinerary',
   },
   {
     image: '/assets/itinerary/shopping.webp',
     step: '05',
+    category: 'Leisure & Culture',
     title: 'Canada, beyond business',
-    description: 'Sightseeing, shopping, and local experiences fitted naturally around the working day.',
-    subject: 'Build a leisure itinerary',
+    description: 'Curated sightseeing, luxury shopping, and iconic Canadian cultural excursions tailored around working hours.',
+    subject: 'Build a Canadian leisure itinerary',
   },
   {
     image: '/assets/itinerary/trade-mission.webp',
     step: '06',
+    category: 'Bilateral Trade',
     title: 'Trade, made tangible',
-    description: 'Import and export coordination for jute bags, cashew nuts, and other goods.',
-    subject: 'Discuss import and export',
+    description: 'Import and export matchmaking for premium cashew nuts, golden jute products, clean tech, and commodities.',
+    subject: 'Discuss bilateral trade & commodities',
   },
   {
     image: '/assets/itinerary/education.webp',
     step: '07',
+    category: 'Delegation Support',
     title: 'Delegations welcomed',
-    description: 'Experienced support for government, education, and industry groups across Canada.',
-    subject: 'Host a delegation',
+    description: 'Proven multi-city protocol for ministerial, education, housing, and industrial delegations across Canada.',
+    subject: 'Host an official delegation',
   },
   {
     image: '/assets/itinerary/travel.webp',
     step: '08',
+    category: 'End-to-End Care',
     title: 'One accountable partner',
-    description: 'From travel preparation to the final airport goodbye, one team holds the whole picture.',
-    subject: 'Start a conversation',
+    description: 'From visa preparation and itinerary design to the final airport departure, one team holds the entire picture.',
+    subject: 'Start a comprehensive conversation',
   },
 ];
 
-const contactEmail = 'info@bridgecanada.ca';
-const contactHref = `mailto:${contactEmail}`;
+const tradePillars = [
+  {
+    icon: '🌾',
+    title: 'Golden Jute & Eco-Packaging',
+    desc: 'Sustainable biodegradable fibers, industrial sacks, and specialty packaging exported to Canadian distributors.',
+  },
+  {
+    icon: '🌰',
+    title: 'Premium Cashews & Agro-Trade',
+    desc: 'Direct-origin bulk cashew processing, rigorous quality testing, and food-grade supply chain fulfillment.',
+  },
+  {
+    icon: '⚡',
+    title: 'Tech, Education & Energy',
+    desc: 'Institutional linkages between Canadian universities, green tech innovators, and foreign ministries.',
+  },
+];
+
+const contactEmail = CONTACT_EMAIL;
+const contactHref = CONTACT_HREF;
+const tradeInquiryHref = `${CONTACT_HREF}?subject=${encodeURIComponent('Canada Bilateral Trade Inquiry')}`;
+const pageTitle = 'Bridge Canada — VIP Delegations, Visits & Bilateral Trade';
+const pageDescription =
+  'Bridge Canada coordinates VIP visits, ministerial delegations, bilateral trade, luxury lodging, and private transport across Canada.';
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site ?? Astro.url.origin);
+const socialImageUrl = new URL('/assets/scene/toronto-panorama-1440.webp', Astro.site ?? Astro.url.origin);
 ---
 
 <!doctype html>
@@ -71,10 +104,25 @@ const contactHref = `mailto:${contactEmail}`;
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <meta
       name="description"
-      content="Bridge Canada coordinates VIP visits, meetings, lodging, transport, leisure itineraries, and import-export opportunities across Canada."
+      content={pageDescription}
     />
-    <meta name="theme-color" content="#0a211b" />
-    <link rel="icon" type="image/png" href="/assets/brand/icon.png" />
+    <meta name="theme-color" content="#040f0c" />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Bridge Canada" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:width" content="1440" />
+    <meta property="og:image:height" content="810" />
+    <meta property="og:image:alt" content="Toronto waterfront at blue hour" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={socialImageUrl} />
+    <meta name="twitter:image:alt" content="Toronto waterfront at blue hour" />
+    <link rel="icon" type="image/png" sizes="42x42" href="/assets/brand/icon.png" />
     <link
       rel="preload"
       as="image"
@@ -82,14 +130,23 @@ const contactHref = `mailto:${contactEmail}`;
       imagesrcset="/assets/scene/toronto-panorama-960.webp 960w, /assets/scene/toronto-panorama-1440.webp 1440w, /assets/scene/toronto-panorama-1672.webp 1672w"
       imagesizes="100vw"
     />
-    <title>Bridge Canada — Your visit, considered</title>
+    <title>{pageTitle}</title>
   </head>
   <body>
     <a class="skip-link" href="#experience">Skip to the experience</a>
+
+    <!-- Custom Cursor Glow / Sparkle Follower for desktop -->
+    <div class="cursor-glow" data-cursor-glow aria-hidden="true"></div>
+
     <main id="experience">
       <section class="cinematic-scroll" data-cinematic aria-label="Bridge Canada story">
         <div class="cinematic-stage">
+          <!-- 3D WebGL Three.js Canvas Container -->
+          <div class="webgl-container" data-webgl aria-hidden="true"></div>
+
+          <!-- World Photographic & Atmospheric Layers -->
           <div class="world" aria-hidden="true">
+            <div class="aurora-glow"></div>
             <picture class="world-layer world-layer--far">
               <source
                 srcset="/assets/scene/toronto-panorama-960.webp 960w, /assets/scene/toronto-panorama-1440.webp 1440w, /assets/scene/toronto-panorama-1672.webp 1672w"
@@ -122,73 +179,205 @@ const contactHref = `mailto:${contactEmail}`;
             <div class="world-haze"></div>
             <div class="world-route">
               <span class="world-route__line"></span>
-              <span class="world-route__point world-route__point--a"></span>
-              <span class="world-route__point world-route__point--b"></span>
+              <span class="world-route__point world-route__point--a">
+                <span class="pulse-beacon"></span>
+              </span>
+              <span class="world-route__point world-route__point--b">
+                <span class="pulse-beacon"></span>
+              </span>
+              <span class="world-route__label world-route__label--a">DHAKA / INT</span>
+              <span class="world-route__label world-route__label--b">OTTAWA / CAN</span>
             </div>
             <div class="world-shade"></div>
             <div class="world-grain"></div>
           </div>
 
+          <!-- Decorative 3D Folio Panels -->
           <div class="folio folio--left" aria-hidden="true">
-            <span class="folio__index">YOW / YYZ</span>
+            <span class="folio__index">YOW · YYZ · YUL · YVR</span>
             <span class="folio__rule"></span>
-            <span class="folio__word">ARRIVE</span>
+            <span class="folio__word">DELEGATION</span>
           </div>
           <div class="folio folio--right" aria-hidden="true">
-            <span class="folio__index">CAN / 001</span>
+            <span class="folio__index">CANADA · WORLDWIDE</span>
             <span class="folio__rule"></span>
-            <span class="folio__word">CONNECT</span>
+            <span class="folio__word">PROTOCOL</span>
           </div>
 
+          <!-- Navigation Waypoint Scrubber HUD (Right side) -->
+          <aside class="waypoint-hud" aria-label="Timeline navigation">
+            <div class="hud-track">
+              <div class="hud-thumb" data-hud-thumb></div>
+            </div>
+            <nav class="hud-nav">
+              <button type="button" data-jump="0" data-target="#experience" class="hud-dot is-active" aria-label="01 Overview">
+                <span class="hud-tooltip">01 Overview</span>
+              </button>
+              <button type="button" data-jump="0.27" data-target="#visit" class="hud-dot" aria-label="02 Protocol">
+                <span class="hud-tooltip">02 Protocol</span>
+              </button>
+              <button type="button" data-jump="0.58" data-target="#trade" class="hud-dot" aria-label="03 Trade">
+                <span class="hud-tooltip">03 Bilateral Trade</span>
+              </button>
+              <button type="button" data-jump="0.88" data-target="#itinerary" class="hud-dot" aria-label="04 Itinerary">
+                <span class="hud-tooltip">04 Itinerary</span>
+              </button>
+            </nav>
+          </aside>
+
+          <!-- Top Header Navigation -->
           <header class="site-header">
             <button class="brand" type="button" data-jump="0" data-target="#experience" aria-label="Return to opening scene">
-              <img src="/assets/brand/icon.png" alt="" width="42" height="42" />
-              <span>Bridge Canada</span>
+              <div class="brand-badge">
+                <img src="/assets/brand/icon.png" alt="" width="42" height="42" />
+                <span class="brand-glow"></span>
+              </div>
+              <div class="brand-text">
+                <span class="brand-name">Bridge Canada</span>
+                <span class="brand-tagline">Delegation & Trade Protocol</span>
+              </div>
             </button>
+
             <nav aria-label="Primary navigation">
-              <button type="button" data-jump="0.27" data-target="#visit">Visit</button>
+              <button type="button" data-jump="0.27" data-target="#visit">Protocol</button>
               <button type="button" data-jump="0.58" data-target="#trade">Trade</button>
-              <button type="button" data-jump="0.9" data-target="#itinerary">Itinerary</button>
+              <button type="button" data-jump="0.88" data-target="#itinerary">Itinerary</button>
             </nav>
-            <a class="header-contact" href={contactHref}>Contact us</a>
+
+            <div class="header-actions">
+              <button type="button" class="customizer-trigger-btn" data-open-customizer>
+                <span class="sparkle" aria-hidden="true">✦</span> Plan Bespoke Visit
+              </button>
+              <a class="header-contact" href={contactHref}>Contact Us</a>
+            </div>
           </header>
 
+          <!-- Beat 0: Hero Narrative -->
           <div class="intro narrative">
-            <p class="eyebrow">Canadian visits, personally orchestrated</p>
-            <h1>Your arrival.<br /><em>Considered.</em></h1>
+            <div class="status-pill">
+              <span class="live-indicator" aria-hidden="true"></span>
+              <span>Canadian Host for International Dignitaries</span>
+            </div>
+
+            <h1>Your arrival.<br /><em>Masterfully considered.</em></h1>
+
             <p class="intro__body">
-              Meetings, lodging, transport, and the moments between — held together by one experienced Canadian host.
+              Ministerial delegations, VIP trade missions, and high-level visits to Canada — coordinated from runway to boardroom with uncompromising discretion and personal accountability.
             </p>
-            <button class="text-link" type="button" data-jump="0.27" data-target="#visit">
-              Enter the journey <span aria-hidden="true">↓</span>
-            </button>
+
+            <div class="intro__actions">
+              <button class="primary-pill-btn" type="button" data-jump="0.27" data-target="#visit">
+                <span>Enter the Journey</span>
+                <span class="arrow-icon" aria-hidden="true">↓</span>
+              </button>
+              <button class="secondary-glass-btn" type="button" data-open-customizer>
+                <span>Customize Delegation</span>
+                <span aria-hidden="true">✦</span>
+              </button>
+            </div>
+
+            <div class="stats-ribbon">
+              <div class="stat-cell">
+                <span class="stat-number">14+</span>
+                <span class="stat-label">Ministerial & Official Missions</span>
+              </div>
+              <div class="stat-divider" aria-hidden="true"></div>
+              <div class="stat-cell">
+                <span class="stat-number">100%</span>
+                <span class="stat-label">Discretion & Direct Oversight</span>
+              </div>
+              <div class="stat-divider" aria-hidden="true"></div>
+              <div class="stat-cell">
+                <span class="stat-number">4</span>
+                <span class="stat-label">Key Canadian Hubs</span>
+              </div>
+            </div>
           </div>
 
-          <article class="panel panel--visit narrative" id="visit">
-            <p class="eyebrow">01 / A private welcome</p>
+          <!-- Beat 1: Protocol & VIP Welcome (Visit) -->
+          <article class="panel panel--visit narrative glass-card" id="visit" data-tilt data-tilt-max="7">
+            <div class="card-badge">
+              <span class="badge-dot" aria-hidden="true"></span>
+              <span>01 / Executive Protocol</span>
+            </div>
+
             <h2>From runway<br />to boardroom.</h2>
+
             <p>
-              We receive international VIPs and delegations with an itinerary shaped around the work: airport welcome,
-              private transport, accommodation, dining, and carefully coordinated meetings.
+              We receive international dignitaries and executive delegations with precision protocol: airside greeting, secure luxury transport, premier hospitality, and structured Canadian institutional access.
             </p>
-            <dl class="facts">
-              <div><dt>One team</dt><dd>End-to-end coordination</dd></div>
-              <div><dt>Every detail</dt><dd>Business and leisure</dd></div>
-            </dl>
+
+            <div class="protocol-grid">
+              <div class="protocol-item">
+                <span class="protocol-icon" aria-hidden="true">🛬</span>
+                <div>
+                  <h4>Airside Welcome</h4>
+                  <p>Fast-track runway reception and seamless baggage handoff.</p>
+                </div>
+              </div>
+              <div class="protocol-item">
+                <span class="protocol-icon" aria-hidden="true">🛡️</span>
+                <div>
+                  <h4>Executive Transit</h4>
+                  <p>Dedicated chauffeur fleet across Ottawa, Toronto & Montreal.</p>
+                </div>
+              </div>
+              <div class="protocol-item">
+                <span class="protocol-icon" aria-hidden="true">🏛️</span>
+                <div>
+                  <h4>Bilateral Roundtables</h4>
+                  <p>Direct engagement with Canadian ministries & industry leaders.</p>
+                </div>
+              </div>
+              <div class="protocol-item">
+                <span class="protocol-icon" aria-hidden="true">🏨</span>
+                <div>
+                  <h4>Sanctuary Lodging</h4>
+                  <p>Five-star suites selected for privacy, comfort & security.</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card-footer-cta">
+              <button type="button" class="text-link" data-open-customizer>
+                Request protocol consultation <span aria-hidden="true">→</span>
+              </button>
+            </div>
           </article>
 
-          <article class="panel panel--trade narrative" id="trade">
-            <p class="eyebrow">02 / Across the table</p>
+          <!-- Beat 2: Bilateral Trade & Commodities (Trade) -->
+          <article class="panel panel--trade narrative glass-card" id="trade" data-tilt data-tilt-max="7">
+            <div class="card-badge">
+              <span class="badge-dot" aria-hidden="true"></span>
+              <span>02 / Bilateral Sourcing</span>
+            </div>
+
             <h2>Trade with a<br />human connection.</h2>
+
             <p>
-              Bridge Canada also supports import and export opportunities between Canada and international partners —
-              including jute bags, cashew nuts, and other products.
+              Bridge Canada builds bilateral commerce bridges between international producers and Canadian supply chains — backed by end-to-end import/export logistics and compliance assurance.
             </p>
-            <a class="text-link" href="mailto:info@bridgecanada.ca?subject=Canada%20trade%20inquiry">
-              Discuss trade <span aria-hidden="true">↗</span>
-            </a>
+
+            <div class="trade-pillars">
+              {tradePillars.map((pillar) => (
+                <div class="trade-pillar-card">
+                  <span class="pillar-icon" aria-hidden="true">{pillar.icon}</span>
+                  <div class="pillar-body">
+                    <h4>{pillar.title}</h4>
+                    <p>{pillar.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div class="card-footer-cta">
+              <a class="primary-glass-link" href={tradeInquiryHref}>
+                Discuss Sourcing & Trade Missions <span aria-hidden="true">↗</span>
+              </a>
+            </div>
           </article>
 
+          <!-- Beat 3: Interactive 3D Itinerary Showcase -->
           <section class="catalog" id="itinerary" aria-labelledby="catalog-title">
             <div class="catalog__heading">
               <div>
@@ -204,7 +393,7 @@ const contactHref = `mailto:${contactEmail}`;
             <div class="rail" data-rail tabindex="0" aria-label="Bridge Canada itinerary">
               <ul>
                 {itinerary.map((item) => (
-                  <li class="rail-card">
+                  <li class="rail-card glass-card" data-tilt data-tilt-max="8">
                     <a href={`mailto:${contactEmail}?subject=${encodeURIComponent(item.subject)}`}>
                       <div class="rail-card__image">
                         <img
@@ -215,11 +404,14 @@ const contactHref = `mailto:${contactEmail}`;
                           loading="lazy"
                           decoding="async"
                         />
-                        <span>{item.step}</span>
+                        <div class="card-badge-pill">{item.category}</div>
+                        <span class="step-num">{item.step}</span>
                       </div>
-                      <h3>{item.title}</h3>
-                      <p>{item.description}</p>
-                      <span class="rail-card__action">Ask about this <span aria-hidden="true">↗</span></span>
+                      <div class="rail-card__body">
+                        <h3>{item.title}</h3>
+                        <p>{item.description}</p>
+                        <span class="rail-card__action">Inquire about this step <span aria-hidden="true">↗</span></span>
+                      </div>
                     </a>
                   </li>
                 ))}
@@ -228,19 +420,166 @@ const contactHref = `mailto:${contactEmail}`;
             <p class="sr-only" data-rail-status aria-live="polite">Itinerary item 1 of {itinerary.length}</p>
 
             <div class="catalog__footer">
-              <p>Ready when you are.</p>
-              <a class="primary-cta" href={contactHref}>Contact us <span aria-hidden="true">↗</span></a>
+              <div class="catalog__footer-copy">
+                <p>Ready to orchestrate your Canadian mission?</p>
+                <span>Trusted by government ministries & global delegations.</span>
+              </div>
+              <div class="footer-buttons">
+                <button type="button" class="secondary-cta" data-open-customizer>
+                  <span>Interactive Trip Builder</span>
+                  <span aria-hidden="true">✦</span>
+                </button>
+                <a class="primary-cta" href={contactHref}>
+                  <span>Contact Us</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </div>
               <address>1390 Prince of Wales Drive, Unit 508 · Ottawa, Canada</address>
             </div>
           </section>
 
+          <!-- Stage Coordinates Frame -->
           <div class="stage-frame" aria-hidden="true">
-            <span>45.4215° N</span>
-            <span>Canada · Worldwide</span>
+            <span class="coord">45.4215° N, 75.6972° W · OTTAWA</span>
+            <span class="stage-status">EMBASSY LIAISON & TRADE COORDINATION</span>
+            <span class="global-scope">Canada · Worldwide</span>
           </div>
         </div>
       </section>
     </main>
+
+    <!-- Interactive VIP Delegation Trip Builder Drawer / Modal -->
+    <div class="customizer-modal" data-customizer-modal aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="customizer-title">
+      <div class="customizer-backdrop" data-close-customizer tabindex="-1"></div>
+      <div class="customizer-panel">
+        <header class="customizer-header">
+          <div>
+            <span class="customizer-eyebrow">VIP Delegation Customizer</span>
+            <h3 id="customizer-title">Orchestrate Your Canadian Mission</h3>
+          </div>
+          <button type="button" class="customizer-close" data-close-customizer aria-label="Close delegation builder">✕</button>
+        </header>
+
+        <form class="customizer-form" data-customizer-form>
+          <!-- Step 1: Delegation Nature (BR-072: fieldset/legend semantics) -->
+          <fieldset class="form-section">
+            <legend class="form-label">1. Delegation Mission Focus</legend>
+            <div class="chip-group">
+              <label class="chip">
+                <input type="radio" name="mission" value="Government & Ministerial" checked />
+                <span><span aria-hidden="true">🏛️</span> Government & Ministerial</span>
+              </label>
+              <label class="chip">
+                <input type="radio" name="mission" value="Bilateral Trade & Sourcing" />
+                <span><span aria-hidden="true">📦</span> Bilateral Trade & Commodities</span>
+              </label>
+              <label class="chip">
+                <input type="radio" name="mission" value="Corporate & VIP Executive" />
+                <span><span aria-hidden="true">💼</span> Corporate & VIP Executive</span>
+              </label>
+              <label class="chip">
+                <input type="radio" name="mission" value="Higher Education & Tech" />
+                <span><span aria-hidden="true">🎓</span> Higher Education & Research</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Step 2: Canadian Hubs -->
+          <fieldset class="form-section">
+            <legend class="form-label">2. Canadian Destinations Required</legend>
+            <div class="chip-group">
+              <label class="chip chip--checkbox">
+                <input type="checkbox" name="cities" value="Ottawa (Capital & Diplomacy)" checked />
+                <span><span aria-hidden="true">🍁</span> Ottawa</span>
+              </label>
+              <label class="chip chip--checkbox">
+                <input type="checkbox" name="cities" value="Toronto (Finance & Industry)" checked />
+                <span><span aria-hidden="true">🏙️</span> Toronto</span>
+              </label>
+              <label class="chip chip--checkbox">
+                <input type="checkbox" name="cities" value="Montreal (Trade & Culture)" />
+                <span><span aria-hidden="true">⚜️</span> Montreal</span>
+              </label>
+              <label class="chip chip--checkbox">
+                <input type="checkbox" name="cities" value="Vancouver (Pacific Gateway)" />
+                <span><span aria-hidden="true">🏔️</span> Vancouver</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Step 3: Required Services -->
+          <fieldset class="form-section">
+            <legend class="form-label">3. Core Protocol Services</legend>
+            <div class="chip-group">
+              <label class="chip chip--checkbox">
+                <input type="checkbox" name="services" value="VIP Airside Greeting & Fast Track" checked />
+                <span><span aria-hidden="true">🛬</span> Airside VIP Greeting</span>
+              </label>
+              <label class="chip chip--checkbox">
+                <input type="checkbox" name="services" value="Dedicated Luxury Chauffeur Fleet" checked />
+                <span><span aria-hidden="true">🚗</span> Luxury Chauffeur Fleet</span>
+              </label>
+              <label class="chip chip--checkbox">
+                <input type="checkbox" name="services" value="5-Star Executive Suites & Privacy" checked />
+                <span><span aria-hidden="true">🏨</span> 5-Star Accommodations</span>
+              </label>
+              <label class="chip chip--checkbox">
+                <input type="checkbox" name="services" value="Canadian Institutional / B2B Matchmaking" checked />
+                <span><span aria-hidden="true">🤝</span> B2B / Ministry Matchmaking</span>
+              </label>
+              <label class="chip chip--checkbox">
+                <input type="checkbox" name="services" value="Hosted Private Dining & Banquets" />
+                <span><span aria-hidden="true">🍽️</span> Hosted Dining & Protocol</span>
+              </label>
+              <label class="chip chip--checkbox">
+                <input type="checkbox" name="services" value="Bespoke Leisure & Cultural Itinerary" />
+                <span><span aria-hidden="true">🛍️</span> Curated Leisure & Excursions</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <!-- Step 4: Delegation Size -->
+          <fieldset class="form-section">
+            <legend class="form-label">4. Estimated Delegation Size</legend>
+            <div class="chip-group">
+              <label class="chip">
+                <input type="radio" name="size" value="1 to 4 Dignitaries (VIP Core)" checked />
+                <span>1–4 VIPs</span>
+              </label>
+              <label class="chip">
+                <input type="radio" name="size" value="5 to 12 Delegates (Standard Delegation)" />
+                <span>5–12 Delegates</span>
+              </label>
+              <label class="chip">
+                <input type="radio" name="size" value="13+ Delegates (Large Official Mission)" />
+                <span>13+ Full Mission</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="customizer-summary-card">
+            <div class="summary-header">
+              <span class="summary-badge">⚡ Instant Inquiry Package</span>
+              <span class="summary-status">Direct to Principal Host</span>
+            </div>
+            <p class="summary-preview">Clicking below will format your selections into a tailored delegation inquiry draft ready to send.</p>
+          </div>
+
+          <!-- BR-010: In-modal submission feedback and fallback link -->
+          <div class="customizer-status" data-customizer-status role="status" aria-live="polite" style="display: none;">
+            <p class="status-msg">✓ Email draft initiated. If your mail client did not open automatically, <a data-customizer-fallback href={contactHref} class="status-link">click here to send directly</a>.</p>
+          </div>
+
+          <footer class="customizer-actions">
+            <button type="submit" class="submit-inquiry-btn">
+              <span>Send Tailored Delegation Inquiry</span>
+              <span aria-hidden="true">✉</span>
+            </button>
+          </footer>
+        </form>
+      </div>
+    </div>
+
     <script src="../scripts/cinematic.ts"></script>
   </body>
 </html>
