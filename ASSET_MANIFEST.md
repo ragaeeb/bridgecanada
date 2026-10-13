@@ -72,6 +72,8 @@ The supplied legacy directory contained 22 public images plus the application ic
 
 ## Production notes
 
+The `/trade/` route reuses the brand icon and social preview. Its route map, cashew cluster, woven jute bag and pepper bowl are generated in `src/scripts/trade.js`; their textures are painted on canvas. No remote font, image, model or CDN script is required. The supplied `Bridge Canada.html` is a design reference, not a shipped page.
+
 `tests/project-contract.test.ts` verifies that local image paths referenced by the home page and exact production asset paths documented here exist. Responsive derivatives remain an explicit asset-production step; place every shipped variant under `public/assets/` and update this manifest in the same change.
 
 Build-validated production inventory:

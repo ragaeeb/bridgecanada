@@ -89,7 +89,6 @@ const tradePillars = [
 
 const contactEmail = CONTACT_EMAIL;
 const contactHref = CONTACT_HREF;
-const tradeInquiryHref = `${CONTACT_HREF}?subject=${encodeURIComponent('Canada Bilateral Trade Inquiry')}`;
 const pageTitle = 'Bridge Canada — VIP Delegations, Visits & Bilateral Trade';
 const pageDescription =
   'Bridge Canada coordinates VIP visits, ministerial delegations, bilateral trade, luxury lodging, and private transport across Canada.';
@@ -240,7 +239,7 @@ const socialImageUrl = new URL('/assets/scene/toronto-panorama-1440.webp', Astro
 
             <nav aria-label="Primary navigation">
               <button type="button" data-jump="0.27" data-target="#visit">Protocol</button>
-              <button type="button" data-jump="0.58" data-target="#trade">Trade</button>
+              <a href="/trade/">Trade</a>
               <button type="button" data-jump="0.88" data-target="#itinerary">Itinerary</button>
             </nav>
 
@@ -371,8 +370,8 @@ const socialImageUrl = new URL('/assets/scene/toronto-panorama-1440.webp', Astro
             </div>
 
             <div class="card-footer-cta">
-              <a class="primary-glass-link" href={tradeInquiryHref}>
-                Discuss Sourcing & Trade Missions <span aria-hidden="true">↗</span>
+              <a class="primary-glass-link" href="/trade/">
+                Explore Sourcing & Trade <span aria-hidden="true">↗</span>
               </a>
             </div>
           </article>

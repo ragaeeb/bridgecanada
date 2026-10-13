@@ -31,7 +31,7 @@
     "@astrojs/check": "0.9.10",
     "astro": "^7.3.8",
     "three": "^0.186.1",
-    "typescript": "~7.0.2"
+    "typescript": "~6.0.3"
   },
   "devDependencies": {
     "@biomejs/biome": "2.5.15",
