@@ -4,7 +4,7 @@
     "url": "https://github.com/ragaeeb/bridgecanada/issues"
   },
   "name": "bridgecanada",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "private": true,
   "type": "module",
   "engines": {
@@ -29,14 +29,14 @@
   },
   "dependencies": {
     "@astrojs/check": "0.9.10",
-    "astro": "latest",
-    "three": "^0.185.1",
-    "typescript": "~6.0.3"
+    "astro": "^7.3.8",
+    "three": "^0.186.1",
+    "typescript": "~7.0.2"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.5.10",
-    "@types/bun": "1.4.0",
-    "@types/three": "^0.185.4",
-    "wrangler": "^4.125.0"
+    "@biomejs/biome": "2.5.15",
+    "@types/bun": "1.4.3",
+    "@types/three": "^0.186.0",
+    "wrangler": "^4.150.0"
   }
 }
