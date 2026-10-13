@@ -47,3 +47,14 @@ At scroll position zero on desktop widths, compare rendered geometry rather than
 - **Reduced Motion**: Toggle `prefers-reduced-motion` while the page is open and confirm WebGL and timeline motion stop while controls remain usable.
 - **Keyboard and focus**: Confirm the itinerary rail, waypoint controls, and customizer can be operated without a pointer and that modal focus is contained and restored.
 - **Fallbacks**: Confirm the narrative remains readable with JavaScript disabled and when WebGL initialization is unavailable.
+
+## Trade route
+
+- Open `/trade/` from both the home navigation and Trade panel; confirm the brand link returns home.
+- Scroll down and back through overview, sourcing, cashew, jute, spices and enquiry. Check route-camera transitions, product rotation and chapter colours.
+- Check desktop, tablet and mobile layouts for clipped copy or horizontal overflow.
+- Open `/trade/#products`, `/trade/#jute`, `/trade/#spice` and `/trade/#enquire` directly; confirm each opens the intended chapter.
+- Use product enquiry links, change the selected product, and confirm the email recipient and subject. Copy the address and verify confirmation or the text-selection fallback.
+- Confirm keyboard focus reaches only the active chapter; chapter navigation moves focus to its heading.
+- With reduced motion or JavaScript disabled, confirm all chapters remain readable in a normal scrolling page. With WebGL unavailable, confirm the route map and enquiry controls still work.
+- Leave and return to the page; confirm animation resumes and canvas resources are released on exit.

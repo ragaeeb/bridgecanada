@@ -1,0 +1,144 @@
+---
+import { CONTACT_EMAIL, CONTACT_HREF } from '../config/contact.ts';
+import '../styles/global.css';
+
+const pageTitle = 'Trade — Bridge Canada';
+const pageDescription = 'Connect international producers with Canadian buyers. Explore cashew nuts, jute bags and spices with Bridge Canada, your trade coordination partner in Ottawa.';
+const canonicalUrl = new URL('/trade/', Astro.site ?? Astro.url.origin);
+const socialImageUrl = new URL('/assets/scene/toronto-panorama-1440.webp', Astro.site ?? Astro.url.origin);
+const products = [
+  {
+    key: 'cashew', name: 'Cashew', label: 'cashew nuts', origin: 'Tanzania', side: 'left',
+    readout: '10.3° S · 40.2° E',
+    line: 'Premium cashew nuts. A connection to the source.',
+    body: 'Bridge Canada connects Canadian buyers with cashew producers in Tanzania. Tell us your requirements for bulk supply, grading and packaging; we help coordinate the conversation from origin to destination.',
+    facts: 'Tanzania · Mtwara & Lindi',
+  },
+  {
+    key: 'jute', name: 'Jute', label: 'jute bags', origin: 'Bangladesh', side: 'right',
+    readout: '22.4° N · 91.8° E',
+    line: 'Golden fibre. A more considered way to package.',
+    body: 'From industrial sacks to reusable shopping bags, Bangladesh’s jute brings a natural fibre alternative to Canadian businesses. Bridge Canada helps connect your specifications with producers and coordinate import and export logistics.',
+    facts: 'Bangladesh · Natural fibre packaging',
+  },
+  {
+    key: 'spice', name: 'Spices', label: 'spices', origin: 'Malaysia', side: 'left',
+    readout: '1.6° N · 110.3° E',
+    line: 'Distinctive origins. New possibilities for your shelves.',
+    body: 'Explore Malaysian spices, including Sarawak pepper, with one point of contact in Canada. Share your preferred product, format and volume, and Bridge Canada will help you discuss sourcing and shipping options.',
+    facts: 'Malaysia · Sarawak, Borneo',
+  },
+];
+const arrow = '↗';
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="description" content={pageDescription} />
+    <meta name="theme-color" content="#030d0a" />
+    <link rel="canonical" href={canonicalUrl} />
+    <link rel="icon" type="image/png" sizes="42x42" href="/assets/brand/icon.png" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Bridge Canada" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:image" content={socialImageUrl} />
+    <meta property="og:image:alt" content="Toronto waterfront at blue hour" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+    <meta name="twitter:image" content={socialImageUrl} />
+    <title>{pageTitle}</title>
+  </head>
+  <body class="trade-page" data-trade>
+    <a class="skip-link" href="#enquire" data-goto="5">Skip to trade enquiries</a>
+    <canvas id="gl" aria-hidden="true"></canvas>
+    <canvas id="gl3d" aria-hidden="true"></canvas>
+
+    <div id="loader" role="status" aria-live="polite">
+      <p class="loader__word" aria-hidden="true"><span>BRIDGE</span><span class="loader__fill" id="loader-fill">BRIDGE</span></p>
+      <p class="loader__label">Connecting continents</p>
+    </div>
+
+    <header class="top" id="chrome">
+      <a class="trade-brand" href="/" aria-label="Bridge Canada home">
+        <img class="trade-brand__mark" src="/assets/brand/icon.png" alt="" width="42" height="42" />
+        <span class="trade-brand__name">Bridge Canada<span class="trade-brand__tagline">Connecting Continents</span></span>
+      </a>
+      <nav class="nav" aria-label="Trade chapters">
+        <a href="#top" data-goto="0" data-nav="0 1">The bridge</a>
+        <a href="#products" data-goto="2" data-nav="2 3 4">Products</a>
+        <a href="#enquire" data-goto="5" data-nav="5">Enquire</a>
+      </nav>
+      <p class="readout" id="readout" aria-hidden="true">Canada · Worldwide</p>
+      <a class="mobile-enquire" href="#enquire" data-goto="5">Enquire <span aria-hidden="true">{arrow}</span></a>
+    </header>
+
+    <p class="scrollhint" id="scrollhint" aria-hidden="true"><span>Scroll to explore</span><span class="scrollhint__arrow">↓</span></p>
+
+    <main>
+      <section class="ch ch--hero" id="top" data-readout="Canada · Worldwide" aria-labelledby="hero-title" tabindex="-1">
+        <div class="hero">
+          <p class="trade-eyebrow r" style="--i:0">Bilateral trade · Bridge Canada</p>
+          <h1 class="hero__title" id="hero-title">
+            <span class="rise" style="--i:1"><span>Rooted at the source.</span></span>
+            <span class="rise" style="--i:2"><span><em>Connected to Canada.</em></span></span>
+          </h1>
+          <p class="hero__body r" style="--i:3">Cashew nuts, golden jute and distinctive spices. Bridge Canada connects international producers with Canadian buyers, bringing a human connection to every trade journey.</p>
+        </div>
+      </section>
+
+      <section class="ch ch--thesis" id="bridge" data-readout="3 origins · 1 Canadian partner" aria-labelledby="thesis-title" tabindex="-1">
+        <div class="thesis">
+          <p class="trade-eyebrow r" style="--i:0">From origin to opportunity</p>
+          <h2 class="thesis__title r" id="thesis-title" style="--i:1">A shorter path.<br />A personal connection.</h2>
+          <p class="thesis__facts r" style="--i:2">From Tanzania, Bangladesh and Malaysia to your business in Canada. We help bring producers and buyers together, coordinate import and export logistics, and keep the conversation moving.</p>
+          <p class="holding__facts r" style="--i:3">One point of contact · Based in Ottawa</p>
+        </div>
+      </section>
+
+      {products.map((product, index) => (
+        <section class={`ch ch--${product.key}`} id={index === 0 ? 'products' : product.key} data-side={product.side} data-readout={product.readout} aria-labelledby={`${product.key}-title`} tabindex="-1">
+          <article class="holding">
+            <p class="trade-eyebrow r" style="--i:0">0{index + 1} / {product.origin}</p>
+            <h2 class="holding__name" id={`${product.key}-title`}><span class="rise" style="--i:1"><span>{product.name}</span></span></h2>
+            <p class="holding__line r" style="--i:2">{product.line}</p>
+            <p class="holding__body r" style="--i:3">{product.body}</p>
+            <p class="holding__facts r" style="--i:4">{product.facts}</p>
+            <a class="cta r" href={`${CONTACT_HREF}?subject=${encodeURIComponent(`Bridge Canada Trade Inquiry: ${product.label}`)}`} style="--i:5" data-enquire={product.key}>Enquire about {product.label}<i aria-hidden="true">{arrow}</i></a>
+          </article>
+        </section>
+      ))}
+
+      <section class="ch ch--signal" id="enquire" data-readout="45.4° N · 75.7° W / Ottawa" aria-labelledby="signal-title" tabindex="-1">
+        <div class="signal">
+          <p class="trade-eyebrow r" style="--i:0">Your next connection starts here</p>
+          <h2 class="signal__title" id="signal-title"><span class="rise" style="--i:1"><span>Let’s talk <em>trade.</em></span></span></h2>
+          <p class="signal__body r" style="--i:2">Tell us the product, quantity and Canadian destination. Our team will help you explore sourcing and shipping options.</p>
+          <ul class="links r" style="--i:3" aria-label="Select a product for your enquiry">
+            {products.map((product, index) => (
+              <li><button class="pick" type="button" data-pick={product.key} aria-pressed={index === 0 ? 'true' : 'false'}><i aria-hidden="true"></i><b>{product.key === 'cashew' ? 'Cashew nuts' : product.key === 'jute' ? 'Jute bags' : 'Spices'}</b><span>{product.origin}</span></button></li>
+            ))}
+          </ul>
+          <div class="enquiry r" style="--i:4">
+            <p class="enquiry__label" aria-live="polite">Email us about <b id="pick-name">cashew nuts</b></p>
+            <p class="enquiry__addr"><span id="addr">{CONTACT_EMAIL}</span></p>
+            <div class="enquiry__row">
+              <a class="cta cta--solid" id="mail" href={`${CONTACT_HREF}?subject=${encodeURIComponent('Bridge Canada Trade Inquiry: Cashew nuts')}`}>Write to us<i aria-hidden="true">{arrow}</i></a>
+              <button class="btn" type="button" id="copy" aria-live="polite">Copy address</button>
+            </div>
+          </div>
+          <address class="colophon r" style="--i:5">1390 Prince of Wales Drive, Unit 508<br />Ottawa, Canada</address>
+        </div>
+      </section>
+    </main>
+    <div id="track" aria-hidden="true"></div>
+    <script>
+      import '../scripts/trade.js';
+    </script>
+  </body>
+</html>

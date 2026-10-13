@@ -6,6 +6,8 @@
 
 A static, scroll-driven Astro microsite for Bridge Canada’s VIP visit, delegation, and trade coordination services.
 
+The dedicated `/trade/` route presents cashew nuts, jute bags and spices through an animated route map and procedural 3D products. Reach it from the home page’s Trade navigation or sourcing panel. Enquiries use the shared `src/config/contact.ts` address.
+
 ---
 
 ## About
@@ -73,11 +75,13 @@ bun run deploy       # Build and deploy directly to Cloudflare Workers via Wrang
 .
 ├── src/
 │   ├── pages/
-│   │   └── index.astro        # Main page markup, delegation customizer & content structure
+│   │   ├── index.astro        # Main page markup, delegation customizer & content structure
+│   │   └── trade.astro        # Trade story, product chapters & enquiry selector
 │   ├── scripts/
 │   │   ├── cinematic.ts       # Scroll timeline, HUD scrubber & event coordination
 │   │   ├── three-scene.ts     # Three.js 3D WebGL globe, route arcs & particle nebula
-│   │   └── tilt.ts            # 3D perspective card tilt & specular glare engine
+│   │   ├── tilt.ts            # 3D perspective card tilt & specular glare engine
+│   │   └── trade.js           # Trade map camera, procedural product models & enquiry controls
 │   └── styles/
 │       └── global.css         # Art direction, glassmorphism, 3D depth, HUD & responsive rules
 ├── public/
@@ -100,6 +104,7 @@ Pull requests and pushes to `master` run the same lint, type-check, test, and bu
 ## Editing & Configuration
 
 - **Itinerary Content**: Lives in the `itinerary` array in the frontmatter of `src/pages/index.astro`.
+- **Trade Content**: Product copy lives in `src/pages/trade.astro`; chapter colours and typography are scoped under `.trade-page` in `src/styles/global.css`. The Trade page displays an ordinary readable page when JavaScript is unavailable or reduced motion is enabled.
 - **Timeline Boundaries**: Live in the single `beats` object in `src/scripts/cinematic.ts`. Adjust those boundaries before changing render math.
 - **Interactions**: The final rail supports control buttons, keyboard arrow navigation, Home/End keys, mouse drag, and native touch swipe. Every card and CTA triggers pre-addressed email actions.
 

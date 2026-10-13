@@ -2,7 +2,7 @@
   "$schema": "https://biomejs.dev/schemas/latest/schema.json",
   "files": {
     "ignoreUnknown": true,
-    "includes": ["**", "!node_modules", "!.astro", "!dist", "!build", "!.git", "!**/*.astro"]
+    "includes": ["**", "!node_modules", "!.astro", "!dist", "!build", "!.git", "!**/*.astro", "!Bridge Canada.html"]
   },
   "formatter": {
     "enabled": true,
